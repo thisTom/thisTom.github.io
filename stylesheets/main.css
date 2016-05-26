@@ -131,7 +131,7 @@ section .content{
 	box-sizing: border-box;
 	width: 96%;
 	min-width: 1000px;
-	height: 320px;
+	height: 310px;
 	position: absolute;
 	
 
@@ -176,7 +176,7 @@ section .content{
 
 }
 #mask2{
-	top: 337px;
+	top: 317px;
 	left: 2%;
 
 }
