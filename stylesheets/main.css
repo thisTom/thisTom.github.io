@@ -2,7 +2,7 @@ body{
 	margin: 0;
 	background-color: #FFF;
 	font-family: "microsoft yahei";
-	min-height: 100vh;
+
 }
 b{
 	color: #aaf;
@@ -25,10 +25,6 @@ nav{
 	z-index: 1000;
 	left: -100px;
 	top: 160px;
-	-webkit-transition: all 0.5s 0.8s;
-	-moz-transition: all 0.5s 0.8s;
-	-ms-transition: all 0.5s 0.8s;
-	-o-transition: all 0.5s 0.8s;
 	transition: all 0.5s 0.8s;
 }
 body.open nav{
@@ -42,10 +38,6 @@ nav ul{
 }
 nav ul,
 nav ul a{
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-ms-transition: all 0.5s;
-	-o-transition: all 0.5s;
 	transition: all 0.5s;
 }
 nav ul:hover{
@@ -86,12 +78,10 @@ nav ul a:hover span{
 }
 body > section{
 	width: 100%;
-	height: 710px;
+	height: 680px;
 	overflow: hidden;
 }
-body > section:first{
-	height: 700px;
-}
+
 body #skill,
 body #about,
 body #works,
@@ -125,42 +115,39 @@ section .content{
 	position: absolute;
 	top: 0;
 	z-index: 100;
+	background: url(../images/coverBG.jpg) repeat ;
+
+}
+.cover-rotate{
+	transform:rotate(-5deg) scale(0.9);
+	-webkit-transform:rotate(-5deg) scale(0.9);
 }
 
 .mask{
 	box-sizing: border-box;
 	width: 96%;
 	min-width: 1000px;
-	height: 310px;
+	height: 320px;
 	position: absolute;
-	
-
 	padding: 1em;
 	border: 1em solid transparent;
-	background: linear-gradient(#EEE, #EEE) padding-box,
-	            repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, 
-	              #58a 0, #58a 37.5%, transparent 0, transparent 50%) 5px / 8em 8em;
+	background: linear-gradient(#ededed, #ededed) padding-box,
+	            repeating-linear-gradient(-45deg, #982829 0, #982829 12.5%, #ededed 0, #ededed 25%, 
+	              #444875 0, #444875 37.5%, #ededed 0, #ededed 50%) 38px / 8em 8em;
 }
+.cover-rotate,
 .mask,
 #home,
 #myPhoto{
-	-webkit-transition: all 0.5s ease 0.3s;
-	-moz-transition: all 0.5s ease 0.3s;
-	-ms-transition: all 0.5s ease 0.3s;
-	-o-transition: all 0.5s ease 0.3s;
 	transition: all 0.5s ease 0.3s;
 }
 #cover + #home #info1,
 #cover + #home #info2,
 #cover + #home #info3{
-	-webkit-transition: all 1.5s ease 0.8s;
-	-moz-transition: all 1.5s ease 0.8s;
-	-ms-transition: all 1.5s ease 0.8s;
-	-o-transition: all 1.5s ease 0.8s;
 	transition: all 1.5s ease 0.8s;
 }
 #mask1{
-	top: 20px;
+	top: 50px;
 	left: 2%;
 
 }
@@ -176,7 +163,7 @@ section .content{
 
 }
 #mask2{
-	top: 317px;
+	top: 307px;
 	left: 2%;
 
 }
@@ -192,23 +179,37 @@ section .content{
 
 }
 #cover .content{
-	padding: 30px;
+	padding-top: 80px;
 	position: relative;
 	height: 700px;
 }
+#cover .content .letter-top{
+	margin-top: 20px;
+	background-color: #444875;
+	border-radius: 5px;
+	padding: 10px 20px;
+	width: 280px;
+	height: 100px;
+}
 #cover .content h2{
-	font-size: 30px;
-	color: #333;
+	
+	text-align: right;
+	width: 280px;
+	margin: 0px;
+	font-size: 26px;
+	color: white;
+	border-bottom: 2px solid white;
 }
 #cover .content p{
 	font-size: 18px;
 	font-weight: 600;
-	color: #aaf;
+	color: white;
+	text-align: right;
 }
 #cover .content p#open{
 	display: inline-block;
 	cursor: pointer;
-	margin-top: 330px;
+	margin-top: 300px;
 	margin-left: 740px;
 	padding: 10px;
 	border: solid 6px hsla(0,0%,100%,.5);
@@ -221,15 +222,14 @@ section .content{
 	border-color: #99F;
 }
 /* cover.open */
+
+
 body.open #cover #mask1{
 	width: 100%;
 	left: -80%;
-	-webkit-box-shadow: -4px 4px 4px #222;
-	-moz-box-shadow: -4px 4px 4px #222;
 	box-shadow: -4px 4px 4px #222;
 	-webkit-transform: rotate(-35deg);
 	-moz-transform: rotate(-35deg);
-	-ms-transform: rotate(-35deg);
 	-o-transform: rotate(-35deg);
 	transform: rotate(-35deg);
 }
@@ -241,12 +241,19 @@ body.open #cover #mask2{
 	box-shadow: 4px -4px 4px #222;
 	-webkit-transform: rotate(-35deg);
 	-moz-transform: rotate(-35deg);
-	-ms-transform: rotate(-35deg);
 	-o-transform: rotate(-35deg);
 	transform: rotate(-35deg);
 }
 body.open #cover .content{
-	display: none;
+	visibility: hidden;
+}
+body.open #cover{
+	background-image: none;
+}
+body.open .cover-rotate{
+	transform: none;
+	-webkit-transform: none;
+	-moz-transform: none;
 }
 /* page home */
 #home #info1,
@@ -351,10 +358,6 @@ table tr td:first-child{
 #skill td[colspan="4"] div{
 	width: 0;
 	overflow: hidden;
-	-webkit-transition: all 1s 0.5s;
-	-moz-transition: all 1s 0.5s;
-	-ms-transition: all 1s 0.5s;
-	-o-transition: all 1s 0.5s;
 	transition: all 1s 0.5s;
 }
 #skill td[colspan="4"] div span{
