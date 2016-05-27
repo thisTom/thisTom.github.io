@@ -83,13 +83,25 @@ body > section{
 }
 
 @media only screen and (max-width:1000px ) {
+	
+	
 	body > section{
 			overflow: scroll;
 	}
 	body.open #cover{
 		display: none;
 	}
+	#cover{
+		background-image: none !important; 
+		height: 100%;
+	}
 	
+	#cover .content .letter-top{
+		margin-left: 65px;
+	}
+	#cover .content p#open{
+		margin-left: 700px !important;
+	}
 }
 
 
@@ -126,7 +138,8 @@ section .content{
 	position: absolute;
 	top: 0;
 	z-index: 100;
-	background: url(../images/coverBG.jpg) repeat ;
+	background-image: url(../images/coverBG.jpg);
+	background-repeat: repeat;
 }
 .cover-rotate{
 	transform:rotate(-5deg) scale(0.9);
@@ -186,7 +199,7 @@ section .content{
 	display: block;
 	position: absolute;
 	left: 0px;
-	top: -20px;
+	top: -23px;
 
 }
 #cover .content{
@@ -294,6 +307,7 @@ body.open #home #info3{
 	margin-left: 150px;
 }
 #myPhoto{
+	opacity: 0;
 	display: inline-block;
 	border: solid 8px hsl(0, 0%, 100%);
 	margin-left: 280px;
@@ -302,7 +316,7 @@ body.open #home #info3{
 	position: relative;
 }
 body.open #home #myPhoto{
-
+	opacity: 1;
 	box-shadow: 4px 4px 8px rgb(0,0,0);
 }
 #info1{
