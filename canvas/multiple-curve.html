@@ -21,8 +21,8 @@
           context = canvas.getContext('2d'),
           points = [],
           numPoints = 10,
-          ctrlPoint = {},
-          ctrlPoint1 = {};
+          midPoint = {},
+          midPoint1 = {};
 
       for (var i = 0; i < numPoints; i++) {
         points.push({
@@ -31,23 +31,23 @@
         });
       }
 
-      //find the first midpoint and move to it
-      ctrlPoint1.x = (points[0].x + points[numPoints-1].x) / 2;
-      ctrlPoint1.y = (points[0].y + points[numPoints-1].y) / 2;
+      //找到第一个点与最后一个点的中点并以他为起点划线
+      midPoint1.x = (points[0].x + points[numPoints-1].x) / 2;
+      midPoint1.y = (points[0].y + points[numPoints-1].y) / 2;
       context.beginPath();
-      context.moveTo(ctrlPoint1.x, ctrlPoint1.y);
+      context.moveTo(midPoint1.x, midPoint1.y);
 
-      //curve through the rest, stopping at each midpoint
+      //依次以第一个点为控制点，midPoint点为划线终点。（相当于穿过了midPoint）
       for (i = 0; i < numPoints - 1; i++) {
-        ctrlPoint.x = (points[i].x + points[i+1].x) / 2;
-        ctrlPoint.y = (points[i].y + points[i+1].y) / 2;
+        midPoint.x = (points[i].x + points[i+1].x) / 2;
+        midPoint.y = (points[i].y + points[i+1].y) / 2;
         context.quadraticCurveTo(points[i].x, points[i].y,
-                                 ctrlPoint.x, ctrlPoint.y);                         
+                                 midPoint.x, midPoint.y);                         
 
       }
-      //curve through the last point, back to the first midpoint
+      //将最后一个点直接作为控制点并划线到midPoint1。
       context.quadraticCurveTo(points[i].x, points[i].y,
-                               ctrlPoint1.x, ctrlPoint1.y);
+                               midPoint1.x, midPoint1.y);
       var rgba=colors[Math.floor(Math.random()*4)]
       context.strokeStyle=rgba;
       context.stroke();
