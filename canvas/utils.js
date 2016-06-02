@@ -1,10 +1,5 @@
 /**
- * Normalize the browser animation API across implementations. This requests
- * the browser to schedule a repaint of the window for the next animation frame.
- * Checks for cross-browser support, and, failing to find it, falls back to setTimeout.
- * @param {function}    callback  Function to call when it's time to update your animation for the next repaint.
- * @param {HTMLElement} element   Optional parameter specifying the element that visually bounds the entire animation.
- * @return {number} Animation frame request.
+ * start requestAnimationFrame
  */
 if (!window.requestAnimationFrame) {
   window.requestAnimationFrame = (window.webkitRequestAnimationFrame ||
@@ -18,8 +13,6 @@ if (!window.requestAnimationFrame) {
 
 /**
  * Cancels an animation frame request.
- * Checks for cross-browser support, falls back to clearTimeout.
- * @param {number}  Animation frame request.
  */
 if (!window.cancelRequestAnimationFrame) {
   window.cancelRequestAnimationFrame = (window.cancelAnimationFrame ||
@@ -31,15 +24,15 @@ if (!window.cancelRequestAnimationFrame) {
 }
 
 
-/* Object that contains our utility functions.
- * Attached to the window object which acts as the global namespace.
+/* 
+ * utility对象保存通用方法
  */
 window.utils = {};
 
 /**
- * Keeps track of the current mouse position, relative to an element.
+ * 捕获鼠标坐标，相对于element参数
  * @param {HTMLElement} element
- * @return {object} Contains properties: x, y, event
+ * @return {object} 包含属性: x, y, event
  */
 window.utils.captureMouse = function (element) {
   var mouse = {x: 0, y: 0, event: null},
@@ -72,9 +65,9 @@ window.utils.captureMouse = function (element) {
 };
 
 /**
- * Keeps track of the current (first) touch position, relative to an element.
+ * 捕获触摸事件（返回move时相对于element参数的坐标位置）
  * @param {HTMLElement} element
- * @return {object} Contains properties: x, y, isPressed, event
+ * @return {object} 包含属性: x, y, isPressed, event
  */
 window.utils.captureTouch = function (element) {
   var touch = {x: null, y: null, isPressed: false, event: null},
@@ -120,15 +113,15 @@ window.utils.captureTouch = function (element) {
 };
 
 /**
- * Returns a color in the format: '#RRGGBB', or as a hex number if specified.
+ * 转换   utils.parseColor(0xFFFF00) return '#FFFF00'  ulits.parseColor('#FFFF00'or'0xFFFF00' ,true) return 16776960.
  * @param {number|string} color
- * @param {boolean=}      toNumber=false  Return color as a hex number.
+ * @param {boolean=}      toNumber=false  返回number格式
  * @return {string|number}
  */
 window.utils.parseColor = function (color, toNumber) {
   if (toNumber === true) {
     if (typeof color === 'number') {
-      return (color | 0); //chop off decimal
+      return (color | 0); 
     }
     if (typeof color === 'string' && color[0] === '#') {
       color = color.slice(1);
@@ -136,14 +129,14 @@ window.utils.parseColor = function (color, toNumber) {
     return window.parseInt(color, 16);
   } else {
     if (typeof color === 'number') {
-      color = '#' + ('00000' + (color | 0).toString(16)).substr(-6); //pad
+      color = '#' + ('00000' + (color | 0).toString(16)).substr(-6); 
     }
     return color;
   }
 };
 
 /**
- * Converts a color to the RGB string format: 'rgb(r,g,b)' or 'rgba(r,g,b,a)'
+ * 转换一个0xffff00数字格式或者'#ffff00'字符串格式为css风格的颜色: 'rgb(r,g,b)' or 'rgba(r,g,b,a)'
  * @param {number|string} color
  * @param {number}        alpha
  * @return {string}
@@ -167,29 +160,4 @@ window.utils.colorToRGB = function (color, alpha) {
   }
 };
 
-/**
- * Determine if a rectangle contains the coordinates (x,y) within it's boundaries.
- * @param {object}  rect  Object with properties: x, y, width, height.
- * @param {number}  x     Coordinate position x.
- * @param {number}  y     Coordinate position y.
- * @return {boolean}
- */
-window.utils.containsPoint = function (rect, x, y) {
-  return !(x < rect.x ||
-           x > rect.x + rect.width ||
-           y < rect.y ||
-           y > rect.y + rect.height);
-};
 
-/**
- * Determine if two rectangles overlap.
- * @param {object}  rectA Object with properties: x, y, width, height.
- * @param {object}  rectB Object with properties: x, y, width, height.
- * @return {boolean}
- */
-window.utils.intersects = function (rectA, rectB) {
-  return !(rectA.x + rectA.width < rectB.x ||
-           rectB.x + rectB.width < rectA.x ||
-           rectA.y + rectA.height < rectB.y ||
-           rectB.y + rectB.height < rectA.y);
-};
