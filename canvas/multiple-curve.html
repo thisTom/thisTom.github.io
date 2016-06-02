@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi" />
+    <title>canvas多条连续平滑封闭曲线</title>
+    <link rel="stylesheet" href="style.css ">
+  </head>
+  <body>
+
+    <header>
+      <h1>canvas二次贝赛尔曲线</h1>
+    </header>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <aside>Refresh page for random curves.</aside>
+    
+    <script>
+    window.onload = function () {
+      var canvas = document.getElementById('canvas'),
+      	  colors=['#ffff00','#99ff00','#cc66ff','#ff0000'],
+          context = canvas.getContext('2d'),
+          points = [],
+          numPoints = 10,
+          ctrlPoint = {},
+          ctrlPoint1 = {};
+
+      for (var i = 0; i < numPoints; i++) {
+        points.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height
+        });
+      }
+
+      //find the first midpoint and move to it
+      ctrlPoint1.x = (points[0].x + points[numPoints-1].x) / 2;
+      ctrlPoint1.y = (points[0].y + points[numPoints-1].y) / 2;
+      context.beginPath();
+      context.moveTo(ctrlPoint1.x, ctrlPoint1.y);
+
+      //curve through the rest, stopping at each midpoint
+      for (i = 0; i < numPoints - 1; i++) {
+        ctrlPoint.x = (points[i].x + points[i+1].x) / 2;
+        ctrlPoint.y = (points[i].y + points[i+1].y) / 2;
+        context.quadraticCurveTo(points[i].x, points[i].y,
+                                 ctrlPoint.x, ctrlPoint.y);                         
+
+      }
+      //curve through the last point, back to the first midpoint
+      context.quadraticCurveTo(points[i].x, points[i].y,
+                               ctrlPoint1.x, ctrlPoint1.y);
+      var rgba=colors[Math.floor(Math.random()*4)]
+      context.strokeStyle=rgba;
+      context.stroke();
+    };
+    </script>
+  </body>
+</html>
