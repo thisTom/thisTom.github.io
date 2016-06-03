@@ -3,17 +3,18 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>宇宙飞船游戏</title>
+		<meta name="viewport" content="width=device-width" />
+		<title>太空收垃圾</title>
 		<link rel="stylesheet" href="style.css">
 		<style type="text/css">
 			#gameUI{
 				position: absolute;
 				width: 100%;
-				height: 300px;
+				height: 45%;
 				background: rgba(0,0,0,0.8);
 				z-index: 999999;
 				display: block;
-				top: 200px;
+				top: 28%;
 			}
 			#gameIntro{
 				text-align: center;
@@ -71,6 +72,7 @@
 		<footer id="copyRight">copyRirht:2016/6/1 <br /> design and developed by this Tom </footer>
 		<script src="utils.js"></script>
 		<script>
+		window.onload=function(){
 			// Sound
 			var soundBackground = document.getElementById('gameSoundBackground');
 			var soundThrust = document.getElementById('gameSoundThrust');
@@ -159,8 +161,8 @@
 					if (findDis()<(ball.radius+ship.width/2)) {
 						ball=new Ball();
 					    numberScore++;
-						(vx>0) ? vx+=0.1 : vx-=0.1;
-					    (vy>0) ? vx+=0.1 : vx-=0.1;
+						(vx>0) ? vx+=0.2 : vx-=0.2;
+					    (vy>0) ? vx+=0.2 : vx-=0.2;
 					}
 					ball.radius=5;
 					ball.x=ball.X;
@@ -175,7 +177,7 @@
 					//游戏结束判断
 
 					if (ship.x-(ship.width/2)<0 ||ship.y-(ship.height/2)<0 || ship.x+(ship.width/2)>400 || ship.y+(ship.height/2)>400) {
-						cancelAnimationFrame(myReq);
+						window.cancelRequestAnimationFrame(myReq);
 						// Play death sound
 						soundBackground.pause();
 						soundDeath.currentTime = 0;
@@ -195,7 +197,7 @@
 
 
 			};
-
+		};
 		</script>
 	</body>
 
