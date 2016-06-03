@@ -71,7 +71,7 @@
 		<footer id="copyRight">copyRirht:2016/6/1 <br /> design and developed by this Tom </footer>
 		<script src="utils.js"></script>
 		<script>
-		
+		window.onload=function(){
 			// Sound
 			var soundBackground = document.getElementById('gameSoundBackground');
 			var soundThrust = document.getElementById('gameSoundThrust');
@@ -154,11 +154,14 @@
 					}
 					function findDis () {
 						return Math.sqrt(Math.pow(ball.x-ship.x,2)+Math.pow(ball.y-ship.y,2));
+
 					}
 
 					if (findDis()<(ball.radius+ship.width/2)) {
 						ball=new Ball();
 					    numberScore++;
+						(vx>0) ? vx+=0.2 : vx-=0.2;
+					    (vy>0) ? vx+=0.2 : vx-=0.2;
 					}
 					ball.radius=5;
 					ball.x=ball.X;
@@ -193,7 +196,7 @@
 
 
 			};
-
+		};
 		</script>
 	</body>
 
