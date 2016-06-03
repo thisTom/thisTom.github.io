@@ -7,140 +7,195 @@
 		<title>太空收垃圾</title>
 		<link rel="stylesheet" href="style.css">
 		<style type="text/css">
-			#gameUI{
+			.loading {
+				padding-top: 15%;
+				position: absolute;
+				z-index: 999999;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.9);
+				text-align: center;
+				color: white;
+				font-weight: bold;
+			}
+			
+			@keyframes spin {
+				to {
+					transform: rotate(1turn);
+				}
+			}
+			
+			@keyframes radius {
+				50% {
+					border-radius: 50%;
+				}
+			}
+			
+			@keyframes color {
+				33% {
+					color: orange;
+				}
+				66% {
+					color: deeppink
+				}
+			}
+			
+			@keyframes width {
+				50% {
+					border-width: .3em;
+				}
+			}
+			
+			.loading:before {
+				content: '';
+				display: block;
+				width: 4em;
+				height: 4em;
+				margin: 0 auto 1em;
+				border: 1.5em solid;
+				color: yellowgreen;
+				box-sizing: border-box;
+				animation: 1s spin, .7s radius, 1.1s color, 1.3s width;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+			
+			#gameUI {
 				position: absolute;
 				width: 100%;
 				height: 45%;
-				background: rgba(0,0,0,0.8);
-				z-index: 999999;
+				background: rgba(0, 0, 0, 0.8);
+				z-index: 999;
 				display: block;
 				top: 28%;
 			}
-			#gameIntro{
+			
+			#gameIntro {
 				text-align: center;
 				color: white;
 			}
-			p{
+			
+			p {
 				margin-top: 50px;
 			}
-			.start{
+			
+			.start {
 				margin-top: 50px;
 				background-color: #185da8;
 				padding: 10px;
 				font-weight: bold;
 				border-radius: 5px;
 			}
-			.numScore{
+			
+			.numScore {
 				color: gold;
 			}
 		</style>
-		
+
 	</head>
 
 	<body>
+		
 		<header>
 			<h1>welcomeToPlay "太空收垃圾"</h1>
 		</header>
-		
+		<div class="loading">Loading BGM...</div>
 		<div id="gameUI">
-				<div id="gameIntro">
-					<h1>Drive your boat</h1>
-					<p><span class="start">Press Enter Key To Start.</span></p>
-					<p>You has got: <span class="numScore">0</span> rubbish</p>
-					<p>And you only drived: <span class="timeScore">0</span> seconds</p>
-				</div>
+			<div id="gameIntro">
+				<h1>Drive your boat</h1>
+				<p><span class="start">Press Enter Key To Start.</span></p>
+				<p>You has got: <span class="numScore">0</span> rubbish</p>
+				<p>And you only drived: <span class="timeScore">0</span> seconds</p>
 			</div>
-		
-		
+		</div>
+
 		<canvas id="canvas" width="400" height="400"></canvas>
 		<aside>左右方向键转向 ，上方向键加速 ，没有减速：用生命去捡垃圾</aside>
 
 		<!-- Audio -->
-			<audio id="gameSoundBackground" loop>
+		<audio id="gameSoundBackground" loop>
 				<source src="BGM/background.ogg">
 				<source src="BGM/background.mp3">
 			</audio>
-			<audio id="gameSoundThrust" loop>
+		<audio id="gameSoundThrust" loop>
 				<source src="BGM/thrust.ogg">
 				<source src="BGM/thrust.mp3">
-			</audio>
-			<audio id="gameSoundDeath">
-				<source src="BGM/death.ogg">
-				<source src="BGM/death.mp3">
-			</audio>
+		</audio>
 
 		<footer id="copyRight">copyRirht:2016/6/1 <br /> design and developed by this Tom </footer>
 		<script src="utils.js"></script>
 		<script>
-		window.onload=function(){
-			// Sound
-			var soundBackground = document.getElementById('gameSoundBackground');
-			var soundThrust = document.getElementById('gameSoundThrust');
-			var soundDeath = document.getElementById('gameSoundDeath');
-		
-			
-		
-			//press enter to start
-			
-			window.addEventListener('keydown', function (event) {
-				if (event.keyCode==13) {
-					document.getElementById("gameUI").style.display='none';
-					seconds=0;
-					readyToStart();
-					// Start the background sound
-					soundBackground.currentTime = 0;
-					soundBackground.play();
-					Timer=setInterval(function () {
-						seconds++;
-					},1000)
-	
+			window.onload = function() {
+				var loaded = true;
+				if (loaded) {
+					document.getElementsByClassName('loading')[0].style.display = 'none';
 				}
-			})
-			
-			var readyToStart = function() {
-				var numberScore=0;
-				var canvas = document.getElementById('canvas'),
-					context = canvas.getContext('2d'),
-					ship = new Ship(),
-					vr = 0,
-					vx = 1,
-					vy = 0,
-					thrust = 0;
-				ship.x = canvas.width / 2;
-				ship.y = canvas.height / 2;
+				// Sound
+				var soundBackground = document.getElementById('gameSoundBackground');
+				var soundThrust = document.getElementById('gameSoundThrust');
+				//press enter to start
 				window.addEventListener('keydown', function(event) {
-					switch (event.keyCode) {
-						case 37: //left
-							vr = -3;
-							break;
-						case 39: //right
-							vr = 3;
-							break;
-						case 38: //up
-							thrust = 0.05;
-							ship.showFlame = true;
-							// Play sound
-							if (soundThrust.paused) {
-							soundThrust.currentTime = 0;
-							soundThrust.play();
-							};
-							break;
+					if (event.keyCode == 13) {
+						document.getElementById("gameUI").style.display = 'none';
+						seconds = 0;
+						readyToStart();
+						// Start the background sound
+						soundBackground.currentTime = 0;
+						soundBackground.play();
+						Timer = setInterval(function() {
+							seconds++;
+						}, 1000)
 					}
-				}, false);
-				window.addEventListener('keyup', function() {
-					vr = 0;
-					thrust = 0;
-					soundThrust.pause();
-					ship.showFlame = false;
-				}, false);
-
-				var myReq=null,ballExc=false;
-				(function drawFrame() {
-
-					myReq = window.requestAnimationFrame(drawFrame, canvas);
-					context.clearRect(0, 0, canvas.width, canvas.height);
-					ship.rotation += vr * Math.PI / 180;
-					var angle = ship.rotation, //in radians
+				})
+				var readyToStart = function() {
+					var numberScore = 0;
+					var canvas = document.getElementById('canvas'),
+						context = canvas.getContext('2d'),
+						ship = new Ship(),
+						vr = 0,
+						vx = 1,
+						vy = 0,
+						thrust = 0;
+					ship.x = canvas.width / 2;
+					ship.y = canvas.height / 2;
+					window.addEventListener('keydown', function(event) {
+						switch (event.keyCode) {
+							case 37: //left
+								vr = -3;
+								break;
+							case 39: //right
+								vr = 3;
+								break;
+							case 38: //up
+								thrust = 0.05;
+								ship.showFlame = true;
+								// Play sound
+								if (soundThrust.paused) {
+									soundThrust.currentTime = 0;
+									soundThrust.play();
+								};
+								break;
+						}
+					}, false);
+					window.addEventListener('keyup', function() {
+						vr = 0;
+						thrust = 0;
+						soundThrust.pause();
+						ship.showFlame = false;
+					}, false);
+					var myReq = null,
+					ballExc = false;
+					
+					centerScale = 1,
+        			ballAngle = 0;
+        			range = 0.4,
+            		speed = 0.08;
+					
+					(function drawFrame() {
+						myReq = window.requestAnimationFrame(drawFrame, canvas);
+						context.clearRect(0, 0, canvas.width, canvas.height);
+						ship.rotation += vr * Math.PI / 180;
+						var angle = ship.rotation, //in radians
 							ax = Math.cos(angle) * thrust,
 							ay = Math.sin(angle) * thrust;
 						vx += ax;
@@ -148,56 +203,45 @@
 						ship.x += vx;
 						ship.y += vy;
 						ship.draw(context);
-					
-					if (!ballExc) {
-						ball=new Ball();
-						ballExc=true;
-					}
-					function findDis () {
-						return Math.sqrt(Math.pow(ball.x-ship.x,2)+Math.pow(ball.y-ship.y,2));
-
-					}
-
-					if (findDis()<(ball.radius+ship.width/2)) {
-						ball=new Ball();
-					    numberScore++;
-						(vx>0) ? vx+=0.2 : vx-=0.2;
-					    (vy>0) ? vx+=0.2 : vx-=0.2;
-					}
-					ball.radius=5;
-					ball.x=ball.X;
-					ball.y=ball.Y;
-					ball.color=ball.COLOR;
-					ball.draw(context);
-					
-					
-					
-					
-					
-					//游戏结束判断
-
-					if (ship.x-(ship.width/2)<0 ||ship.y-(ship.height/2)<0 || ship.x+(ship.width/2)>400 || ship.y+(ship.height/2)>400) {
-						window.cancelRequestAnimationFrame(myReq);
-						// Play death sound
-						soundBackground.pause();
-						soundDeath.currentTime = 0;
-						soundDeath.play();
+						if (!ballExc) {
+							ball = new Ball();
+							ballExc = true;
+						}
+						ball.scaleX=ball.scaleY=centerScale+Math.sin(ballAngle) * range;
+						ballAngle+=speed;						
 						
-						document.getElementById('gameUI').style.display='block';
-						clearInterval(Timer);
-						var gameOver=document.getElementsByClassName('start')[0]
-						gameOver.innerHTML='Press Enter Key To Restart.'
-						var timeScore=document.getElementsByClassName('timeScore')[0];
-						timeScore.innerHTML=seconds;
-						var numScore=document.getElementsByClassName('numScore')[0];
-						numScore.innerHTML=numberScore;
-					}
-	
-				}());
-
-
+						function findDis() {
+							return Math.sqrt(Math.pow(ball.x - ship.x, 2) + Math.pow(ball.y - ship.y, 2));
+						}
+						if (findDis() < (ball.radius + ship.width / 2)) {
+							ball = new Ball();
+							numberScore++;
+							(vx > 0) ? vx += 0.2: vx -= 0.2;
+							(vy > 0) ? vx += 0.2: vx -= 0.2;
+						}
+        			    
+						ball.radius = 5;
+						ball.x = ball.X;
+						ball.y = ball.Y;
+						ball.color = ball.COLOR;
+						ball.draw(context);
+						//游戏结束判断
+						if (ship.x - (ship.width / 2) < 0 || ship.y - (ship.height / 2) < 0 || ship.x + (ship.width / 2) > 400 || ship.y + (ship.height / 2) > 400) {
+							window.cancelRequestAnimationFrame(myReq);
+							// Play death sound
+							soundBackground.pause();
+							document.getElementById('gameUI').style.display = 'block';
+							clearInterval(Timer);
+							var gameOver = document.getElementsByClassName('start')[0]
+							gameOver.innerHTML = 'Press Enter Key To Restart.'
+							var timeScore = document.getElementsByClassName('timeScore')[0];
+							timeScore.innerHTML = seconds;
+							var numScore = document.getElementsByClassName('numScore')[0];
+							numScore.innerHTML = numberScore;
+						}
+					}());
+				};
 			};
-		};
 		</script>
 	</body>
 
