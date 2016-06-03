@@ -10,7 +10,7 @@ aside, footer, header, nav, section, canvas{
 		width: 320px;
 		height: 320px;
 	}
-	h1{font-size: 1.5em;}
+	h1{font-size: 1.3em;}
 }
 
 /* Examples
@@ -24,7 +24,7 @@ body{
 	background-color:#222;
 }
 h1,aside{
-	margin-top: 10px;
+	margin-top: 20px;
 	text-align: center;
 	color: white;
 }
@@ -41,7 +41,7 @@ footer{
 	text-align: center;
 	color: gold;
 	font-family: "微软雅黑";
-	font-size: .9em;
+	font-size: .8em;
 	position: absolute;
 	bottom: 20px;
 }
