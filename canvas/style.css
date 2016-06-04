@@ -22,6 +22,7 @@ aside, footer, header, nav, section, canvas{
 body{
 	font-family: "微软雅黑";
 	background-color:#222;
+	overflow:hidden;
 }
 h1,aside{
 	margin-top: 20px;
