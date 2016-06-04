@@ -158,7 +158,11 @@
 						thrust = 0;
 					ship.x = canvas.width / 2;
 					ship.y = canvas.height / 2;
+					
+					
 					window.addEventListener('keydown', function(event) {
+
+						
 						switch (event.keyCode) {
 							case 37: //left
 								vr = -3;
@@ -178,10 +182,19 @@
 						}
 					}, false);
 					window.addEventListener('keyup', function() {
-						vr = 0;
-						thrust = 0;
-						soundThrust.pause();
-						ship.showFlame = false;
+							switch (event.keyCode) {
+							case 37: //left
+								vr = 0;
+								break;
+							case 39: //right
+								vr = 0;
+								break;
+							case 38: //up
+								thrust = 0;
+								soundThrust.pause();
+								ship.showFlame = false;
+								break;
+						}
 					}, false);
 					var myReq = null,
 					ballExc = false;
