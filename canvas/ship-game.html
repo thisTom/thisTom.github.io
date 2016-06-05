@@ -70,7 +70,8 @@
 				top: 28%;
 			}
 			
-			#gameIntro {
+			#gameIntro,
+			.tip {
 				text-align: center;
 				color: white;
 			}
@@ -87,15 +88,30 @@
 				border-radius: 5px;
 			}
 			
-			.numScore {
+			.numScore,
+			.level,
+			.tip em {
 				color: gold;
+			}
+			
+			.tip-wrap {
+				display: none;
+				text-align: center;
+			}
+			
+			.tip {
+				margin: 10px 10px;
+			}
+			
+			.tip em {
+				width: 1em;
 			}
 		</style>
 
 	</head>
 
 	<body>
-		
+
 		<header>
 			<h1>welcomeToPlay "太空收垃圾"</h1>
 		</header>
@@ -105,13 +121,20 @@
 				<h1>Drive your boat</h1>
 				<p><span class="start">Press Enter Key To Start.</span></p>
 				<p>You has got: <span class="numScore">0</span> rubbish</p>
-				<p>And you only drived: <span class="timeScore">0</span> seconds</p>
+				<p>And you passed: <span class="level">0</span> levels</p>
 			</div>
 		</div>
 
 		<canvas id="canvas" width="400" height="400"></canvas>
 		<aside>左右方向键转向 ，上方向键加速 ，没有减速：用生命去捡垃圾</aside>
-
+		<div class="tip-wrap">
+			<span class="tip">
+				Rubbish: <em id="rubbish"> 0</em>
+			</span>
+			<span class="tip">
+				Level: <em id="level"> 0</em>
+			</span>
+		</div>
 		<!-- Audio -->
 		<audio id="gameSoundBackground" loop>
 				<source src="BGM/background.ogg">
@@ -122,7 +145,7 @@
 				<source src="BGM/thrust.mp3">
 		</audio>
 
-		<footer id="copyRight">copyRirht:2016/6/1 <br /> design and developed by this Tom </footer>
+		<footer id="copyRight">copyRirht:2016/6/1 <br /> design and developed by <a href="hub.com/thisTom">this Tom</a> </footer>
 		<script src="utils.js"></script>
 		<script>
 			window.onload = function() {
@@ -137,32 +160,27 @@
 				window.addEventListener('keydown', function(event) {
 					if (event.keyCode == 13) {
 						document.getElementById("gameUI").style.display = 'none';
-						seconds = 0;
+						document.getElementsByClassName('tip-wrap')[0].style.display = 'block';
 						readyToStart();
 						// Start the background sound
 						soundBackground.currentTime = 0;
 						soundBackground.play();
-						Timer = setInterval(function() {
-							seconds++;
-						}, 1000)
 					}
 				})
+				var ship = new Ship();
 				var readyToStart = function() {
+					var levelScore = 0;
 					var numberScore = 0;
 					var canvas = document.getElementById('canvas'),
-						context = canvas.getContext('2d'),
-						ship = new Ship(),
-						vr = 0,
+						context = canvas.getContext('2d');
+					var vr = 0,
 						vx = 1,
 						vy = 0,
-						thrust = 0;
+						thrust = 0,
+						levelThrust = 1;
 					ship.x = canvas.width / 2;
 					ship.y = canvas.height / 2;
-					
-					
 					window.addEventListener('keydown', function(event) {
-
-						
 						switch (event.keyCode) {
 							case 37: //left
 								vr = -3;
@@ -182,7 +200,7 @@
 						}
 					}, false);
 					window.addEventListener('keyup', function() {
-							switch (event.keyCode) {
+						switch (event.keyCode) {
 							case 37: //left
 								vr = 0;
 								break;
@@ -197,20 +215,19 @@
 						}
 					}, false);
 					var myReq = null,
-					ballExc = false;
-					
+						ballExc = false;
 					centerScale = 1,
-        			ballAngle = 0;
-        			range = 0.4,
-            		speed = 0.08;
-					
+						ballAngle = 0,
+						colorChange = 0,
+						range = 0.4,
+						speed = 0.08;
 					(function drawFrame() {
 						myReq = window.requestAnimationFrame(drawFrame, canvas);
 						context.clearRect(0, 0, canvas.width, canvas.height);
-						ship.rotation += vr * Math.PI / 180;
+						ship.rotation += vr * levelThrust * Math.PI / 180;
 						var angle = ship.rotation, //in radians
-							ax = Math.cos(angle) * thrust,
-							ay = Math.sin(angle) * thrust;
+							ax = Math.cos(angle) * thrust * levelThrust,
+							ay = Math.sin(angle) * thrust * levelThrust;
 						vx += ax;
 						vy += ay;
 						ship.x += vx;
@@ -220,9 +237,9 @@
 							ball = new Ball();
 							ballExc = true;
 						}
-						ball.scaleX=ball.scaleY=centerScale+Math.sin(ballAngle) * range;
-						ballAngle+=speed;						
-						
+						ball.scaleX = ball.scaleY = centerScale + Math.sin(ballAngle) * range;
+						ballAngle += speed;
+
 						function findDis() {
 							return Math.sqrt(Math.pow(ball.x - ship.x, 2) + Math.pow(ball.y - ship.y, 2));
 						}
@@ -232,23 +249,70 @@
 							(vx > 0) ? vx += 0.2: vx -= 0.2;
 							(vy > 0) ? vx += 0.2: vx -= 0.2;
 						}
-        			    
+						var rubbish = document.getElementById('rubbish').innerHTML = numberScore;
 						ball.radius = 5;
 						ball.x = ball.X;
 						ball.y = ball.Y;
 						ball.color = ball.COLOR;
 						ball.draw(context);
+						//过关canvas边框变化
+						document.getElementById('canvas').style.border = '5px solid hsl(' + colorChange + ',50%,50%)';
+						//判断游戏过关
+						switch (numberScore) {
+							case 1:
+								levelScore = 1;
+								levelThrust = 1.2;
+								if (colorChange < 60) {
+									colorChange += 3;
+								}
+								break;
+							case 2:
+								levelScore = 2;
+								levelThrust = 1.4;
+								if (colorChange < 120) {
+									colorChange += 3;
+								}
+								break;
+							case 3:
+								levelScore = 3;
+								levelThrust = 1.6;
+								if (colorChange < 180) {
+									colorChange += 3;
+								}
+								break;
+							case 4:
+								levelScore = 4;
+								levelThrust = 1.8;
+								if (colorChange < 240) {
+									colorChange += 3;
+								}
+								break;
+							case 5:
+								levelScore = 2;
+								levelThrust = 2.0;
+								if (colorChange < 300) {
+									colorChange += 3;
+								}
+								break;
+							case 6:
+								levelScore = 6;
+								levelThrust = 2.2;
+								if (colorChange < 360) {
+									colorChange += 3;
+								}
+								break;
+						}
+						var lev = document.getElementById('level').innerHTML = levelScore;
 						//游戏结束判断
 						if (ship.x - (ship.width / 2) < 0 || ship.y - (ship.height / 2) < 0 || ship.x + (ship.width / 2) > 400 || ship.y + (ship.height / 2) > 400) {
 							window.cancelRequestAnimationFrame(myReq);
 							// Play death sound
 							soundBackground.pause();
 							document.getElementById('gameUI').style.display = 'block';
-							clearInterval(Timer);
 							var gameOver = document.getElementsByClassName('start')[0]
 							gameOver.innerHTML = 'Press Enter Key To Restart.'
-							var timeScore = document.getElementsByClassName('timeScore')[0];
-							timeScore.innerHTML = seconds;
+							var levels = document.getElementsByClassName('level')[0];
+							levels.innerHTML = levelScore;
 							var numScore = document.getElementsByClassName('numScore')[0];
 							numScore.innerHTML = numberScore;
 						}
