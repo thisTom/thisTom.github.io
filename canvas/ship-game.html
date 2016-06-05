@@ -4,7 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width" />
-		<title>✈太空收垃圾</title>
+		<title>太空收垃圾</title>
+		<link rel='icon' href='ship.ico ' type=‘image/x-ico’ />
 		<link rel="stylesheet" href="style.css">
 		<style type="text/css">
 			.loading {
@@ -52,7 +53,7 @@
 				width: 4em;
 				height: 4em;
 				margin: 0 auto 1em;
-				border: 1.2em solid;
+				border: 1.5em solid;
 				color: yellowgreen;
 				box-sizing: border-box;
 				animation: 1s spin, .7s radius, 1.1s color, 1.3s width;
@@ -259,42 +260,42 @@
 						document.getElementById('canvas').style.border = '5px solid hsl(' + colorChange + ',50%,50%)';
 						//判断游戏过关
 						switch (numberScore) {
-							case 1:
+							case 5:
 								levelScore = 1;
 								levelThrust = 1.2;
 								if (colorChange < 60) {
 									colorChange += 3;
 								}
 								break;
-							case 2:
+							case 10:
 								levelScore = 2;
 								levelThrust = 1.4;
 								if (colorChange < 120) {
 									colorChange += 3;
 								}
 								break;
-							case 3:
+							case 15:
 								levelScore = 3;
 								levelThrust = 1.6;
 								if (colorChange < 180) {
 									colorChange += 3;
 								}
 								break;
-							case 4:
+							case 20:
 								levelScore = 4;
 								levelThrust = 1.8;
 								if (colorChange < 240) {
 									colorChange += 3;
 								}
 								break;
-							case 5:
+							case 25:
 								levelScore = 2;
 								levelThrust = 2.0;
 								if (colorChange < 300) {
 									colorChange += 3;
 								}
 								break;
-							case 6:
+							case 30:
 								levelScore = 6;
 								levelThrust = 2.2;
 								if (colorChange < 360) {
