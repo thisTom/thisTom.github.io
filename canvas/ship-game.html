@@ -133,7 +133,7 @@
 				Rubbish: <em id="rubbish"> 0</em>
 			</span>
 			<span class="tip">
-				Level: <em id="level"> 0</em>
+				Level: <em id="level"> 1</em>
 			</span>
 		</div>
 		<!-- Audio -->
@@ -162,10 +162,11 @@
 					if (event.keyCode == 13) {
 						document.getElementById("gameUI").style.display = 'none';
 						document.getElementsByClassName('tip-wrap')[0].style.display = 'block';
-						readyToStart();
 						// Start the background sound
 						soundBackground.currentTime = 0;
-						soundBackground.play();
+						soundBackground.play();						
+						readyToStart();
+
 					}
 				})
 				var ship = new Ship();
@@ -303,7 +304,7 @@
 								}
 								break;
 						}
-						var lev = document.getElementById('level').innerHTML = levelScore;
+						var lev = document.getElementById('level').innerHTML = levelScore+1;
 						//游戏结束判断
 						if (ship.x - (ship.width / 2) < 0 || ship.y - (ship.height / 2) < 0 || ship.x + (ship.width / 2) > 400 || ship.y + (ship.height / 2) > 400) {
 							window.cancelRequestAnimationFrame(myReq);
