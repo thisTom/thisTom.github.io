@@ -4,37 +4,33 @@ window.onload=function(){
 	open.addEventListener("click",function(){
 		//console.log("click");
 		coverOpen();
-		pushHistory("home",1);
 	});
-	window.addEventListener("popstate",listenerPopState);
 	window.addEventListener("scroll",listenerScroll);
 	var navs=document.querySelectorAll("nav a");
 	each(navs,function(elmt){
 		elmt.addEventListener("click",listenerNavClick);
 	});
 }
-
-function listenerPopState(){
-	var hash=location.hash;
-	console.log(hash);
-	if(hash){
-		coverOpen();
-		//console.log("#"+hash.substr(2));
-		scrollToTarget("#"+hash.substr(2),500,0);
+function coverOpen(){
+	//console.log("cover:"+coverOpend());
+	if(!coverOpend()){
+		var body=document.querySelector("body");
+		addClass(body,"open");
 	}
 }
-
 function listenerNavClick(e){
-	e.preventDefault();
-	var link=this.href;
-	var index=link.lastIndexOf("#");
-	//console.log(this.href+" "+index);
-	var hash=link.substr(index+1);
-	//console.log("hash:"+hash+" "+hashList[hash]);
-	//pushHistory(hash,hashList[hash]);
-	scrollToTarget("#"+hash,500,200);
-}
 
+		e.preventDefault();
+		var link=this.href;
+		//console.log(link);
+		var index=link.lastIndexOf("#");
+		//console.log(this.href+" "+index);
+		var hash=link.substr(index+1);
+		//console.log("hash:"+hash+" "+hashList[hash]);
+		//pushHistory(hash,hashList[hash]);
+		scrollToTarget("#"+hash,500,0);
+		
+}
 function listenerScroll(){
 	if(coverOpend()){
 		var hashList=[
@@ -47,7 +43,7 @@ function listenerScroll(){
 		var py=window.pageYOffset;
 		var currentPageHash=hashList[Math.floor((py+200)/700)];
 		//console.log("current page:"+currentPageHash);
-		if(currentPageHash){ // 末尾页可能无法获取到 hash
+		if(currentPageHash){
 			setCurrentNavItem(currentPageHash);
 			var sectionSkill=document.querySelector("section#skill");
 			if(currentPageHash=="#skill"){
@@ -74,18 +70,7 @@ function setCurrentNavItem(hash){
 		addClass(current,"current");
 		window._currentNav=hash;
 		hash=hash.substr(1);
-		pushHistory(hash,hashList.hash);
-		//console.log("page change");
 	}
-}
-
-function pushHistory(hash,id){
-	history.pushState({
-		url: "index.html#!"+hash,
-		id: id
-	},
-	null,
-	"index.html#!"+hash);
 }
 
 function coverOpend(){
@@ -93,13 +78,7 @@ function coverOpend(){
 	return hasClass(body,"open");
 }
 
-function coverOpen(){
-	//console.log("cover:"+coverOpend());
-	if(!coverOpend()){
-		var body=document.querySelector("body");
-		addClass(body,"open");
-	}
-}
+
 
 function scrollToTarget(elmt,duration,deley){
 	var f=20;
