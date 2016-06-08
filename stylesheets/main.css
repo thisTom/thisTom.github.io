@@ -91,10 +91,6 @@ body > section{
 	body.open #cover{
 		display: none;
 	}
-	#cover{
-		background-image: none !important; 
-		height: 100%;
-	}
 	
 	#cover .content .letter-top{
 		margin-left: 65px;
@@ -138,8 +134,42 @@ section .content{
 	position: absolute;
 	top: 0;
 	z-index: 100;
-	background-image: url(../images/coverBG.jpg);
-	background-repeat: repeat;
+	background:
+	repeating-linear-gradient(
+		transparent,
+		transparent 10px,
+		lightcoral 10px,
+		lightcoral 15px,
+		transparent 15px,
+		transparent 20px,
+		lightcoral 15px,
+		lightcoral 40px,
+		transparent 40px,
+		transparent 45px,
+		lightcoral 45px,
+		lightcoral 50px,
+		transparent 50px,
+		transparent 80px
+	),
+	repeating-linear-gradient(
+		90deg,
+		transparent,
+		transparent 10px,
+		lightcoral 10px,
+		lightcoral 15px,
+		transparent 15px,
+		transparent 20px,
+		lightcoral 15px,
+		lightcoral 40px,
+		transparent 40px,
+		transparent 45px,
+		lightcoral 45px,
+		lightcoral 50px,
+		transparent 50px,
+		transparent 80px
+	), floralwhite;
+
+	background-blend-mode: multiply;
 }
 .cover-rotate{
 	transform:rotate(-5deg) scale(0.9);
@@ -272,7 +302,7 @@ body.open #cover .content{
 	visibility: hidden;
 }
 body.open #cover{
-	background-image: none;
+	background: none;
 }
 body.open .cover-rotate{
 	transform: none;
