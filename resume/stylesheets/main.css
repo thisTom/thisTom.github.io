@@ -2,6 +2,12 @@ body{
 	margin: 0;
 	background-color: #FFF;
 	font-family: "microsoft yahei";
+	height: 100vh;
+	overflow: hidden;
+}
+body.open{
+	height: auto;
+	overflow: auto;
 }
 b{
 	color: #aaf;
