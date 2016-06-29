@@ -188,4 +188,5 @@ nav #projects li:hover {
 	right: -300px;
 	transition: all .4s;
 	opacity: 1;
+	transition-delay: 2s;
 }
