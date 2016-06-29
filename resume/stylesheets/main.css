@@ -1,0 +1,506 @@
+body{
+	margin: 0;
+	background-color: #FFF;
+	font-family: "microsoft yahei";
+}
+b{
+	color: #aaf;
+}
+a{
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.float-clear{
+	clear: both;
+}
+.bg-icon{
+	background: transparent url(../images/icons.png) scroll no-repeat 0 0;
+}
+nav{
+	position: fixed;
+	z-index: 1000;
+	left: -100px;
+	top: 160px;
+	transition: all 0.5s 0.8s;
+}
+body.open nav{
+	left: 0;
+}
+nav ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	opacity: 0.4;
+}
+nav ul,
+nav ul a{
+	transition: all 0.5s;
+}
+nav ul:hover{
+	opacity: 0.8;
+}
+nav ul a{
+	display: inline-block;
+	min-width: 20px;
+	line-height: 40px;
+	text-align: center;
+	padding: 0 10px;
+	text-decoration: none;
+	color: #CCC;
+	background-color: #34495E;
+}
+nav ul a[href="#skill"]{
+	background-color: #2980B9;
+}
+nav ul a[href="#about"]{
+	background-color: #C0392B;
+}
+nav ul a[href="#works"]{
+	background-color: #27AE60;
+}
+nav ul a[href="#contact"]{
+	background-color: #2C3E50;
+}
+nav ul a span{
+	display: none;
+}
+nav ul a:hover{
+	color: #FFF;
+	padding: 0 20px;
+}
+nav ul a.current span,
+nav ul a:hover span{
+	display: inline-block;
+}
+body > section{
+	width: 100%;
+	height: 690px;
+	overflow: hidden;
+
+}
+
+@media only screen and (max-width:1000px ) {
+	
+	
+	body > section{
+			overflow: scroll;
+	}
+	body.open #cover{
+		display: none;
+	}
+	
+	#cover .content .letter-top{
+		margin-left: 65px;
+	}
+	#cover .content p#open{
+		margin-left: 700px !important;
+	}
+}
+
+
+body #skill,
+body #about,
+body #works,
+body #contact{
+	display: none;
+}
+#skill,
+#works{
+	background-color: #EEE;
+}
+body.open #skill,
+body.open #about,
+body.open #works,
+body.open #contact{
+	display: block;
+}
+section .page-title{
+	font-size: 34px;
+	line-height: 40px;
+	margin: 20px 0;
+}
+section .page-title:last-child{
+	text-align: right;
+}
+section .content{
+	width: 1000px;
+	margin: 0px auto;
+}
+/* page cover */
+#cover{
+	position: absolute;
+	top: 0;
+	z-index: 100;
+	background: url(../images/coverBg.jpg);
+}
+.cover-rotate{
+	transform:rotate(-5deg) scale(0.9);
+	-webkit-transform:rotate(-5deg) scale(0.9);
+}
+
+.mask{
+	box-sizing: border-box;
+	width: 96%;
+	min-width: 1000px;
+	height: 320px;
+	position: absolute;
+	padding: 1em;
+	border: 1em solid transparent;
+	background: linear-gradient(#ededed, #ededed) padding-box,
+	            repeating-linear-gradient(-45deg, #982829 0, #982829 12.5%, #ededed 0, #ededed 25%, 
+	              #444875 0, #444875 37.5%, #ededed 0, #ededed 50%) 38px / 8em 8em;
+	box-shadow: 2px 2px 8px rgba(0,0,0,.8);
+}
+.cover-rotate,
+.mask,
+#home,
+#myPhoto{
+	transition: all 0.5s ease 0.3s;
+}
+#cover + #home #info1,
+#cover + #home #info2,
+#cover + #home #info3{
+	transition: all 1.5s ease 0.8s;
+}
+#mask1{
+	top: 50px;
+	left: 2%;
+
+}
+#mask1:after{
+	content: '';
+	width: 100%;
+	background: #EEE;
+	height: 25px;
+	display: block;
+	position: absolute;
+	left: 0px;
+	bottom: -20px;
+
+}
+#mask2{
+	top: 307px;
+	left: 2%;
+
+}
+#mask2:after{
+	content: '';
+	width: 100%;
+	background: #EEE;
+	height: 25px;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: -23px;
+
+}
+#cover .content{
+	padding-top: 80px;
+	position: relative;
+	height: 700px;
+}
+#cover .content .letter-top{
+	margin-top: 20px;
+	background-color: #444875;
+	border-radius: 5px;
+	padding: 10px 20px;
+	width: 280px;
+	height: 100px;
+}
+#cover .content h2{
+	
+	text-align: right;
+	width: 280px;
+	margin: 0px;
+	font-size: 26px;
+	color: white;
+	border-bottom: 2px solid white;
+}
+#cover .content p{
+	font-size: 18px;
+	font-weight: 600;
+	color: white;
+	text-align: right;
+}
+#cover .content p#open{
+	display: inline-block;
+	cursor: pointer;
+	margin-top: 300px;
+	margin-left: 740px;
+	padding: 10px;
+	border: solid 6px hsla(0,0%,100%,.5);
+	color: #666;
+	text-align: right;
+	background-color: white;
+	background-clip: padding-box;
+}
+#cover .content p#open:hover{
+	border-color: #99F;
+}
+/* cover.open */
+
+
+body.open #cover #mask1{
+	width: 100%;
+	left: -80%;
+	box-shadow: -4px 4px 4px #222;
+	-webkit-transform: rotate(-35deg);
+	-moz-transform: rotate(-35deg);
+	-o-transform: rotate(-35deg);
+	transform: rotate(-35deg);
+}
+body.open #cover #mask2{
+	width: 100%;
+	left: 80%;
+	-webkit-box-shadow: 4px -4px 4px #222;
+	-moz-box-shadow: 4px -4px 4px #222;
+	box-shadow: 4px -4px 4px #222;
+	-webkit-transform: rotate(-35deg);
+	-moz-transform: rotate(-35deg);
+	-o-transform: rotate(-35deg);
+	transform: rotate(-35deg);
+}
+body.open #cover .content{
+	visibility: hidden;
+}
+body.open #cover{
+	background: none;
+}
+body.open .cover-rotate{
+	transform: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+}
+/* page home */
+#home #info1,
+#home #info2,
+#home #info3{
+	opacity: 0;
+	
+}
+#home{
+	background-color: #FFF;
+	color: #EEE;
+}
+body.open #home{
+	background-color: #333;
+}
+body.open #home #info1,
+body.open #home #info2,
+body.open #home #info3{
+	position: relative;
+	opacity: 1;
+	z-index: 1000;
+}
+body.open #home #info1{
+	margin-left: 110px;
+}
+body.open #home #info3{
+	margin-left: 150px;
+}
+#myPhoto{
+	opacity: 0;
+	display: inline-block;
+	border: solid 8px hsl(0, 0%, 100%);
+	margin-left: 280px;
+	margin-top: 140px;
+	float: left;
+	position: relative;
+}
+body.open #home #myPhoto{
+	opacity: 1;
+	box-shadow: 4px 4px 8px rgb(0,0,0);
+}
+#info1{
+	float: left;
+	margin-left: 300px;
+	margin-top: 120px;
+}
+#info2{
+	margin-left: 540px;
+	margin-top: 40px;
+	font-size: 24px;
+	font-weight: bold;
+	background-position: 180px 10px;
+}
+#info3{
+
+}
+a{
+	color: #AAF;
+}
+a:hover{
+	color: #008EFE;
+}
+/* page skill */
+#skill,
+#works{
+	color: #333;
+}
+.col1,
+.col2,
+.col3{
+	float: left;
+}
+.col1{
+	margin-top: 220px;
+}
+.col1 h2,
+.row1 h2,
+.row2 h2{
+	width: 30px;
+	margin: 0;
+	border-right: solid 4px #333;
+}
+.col2{
+	margin-left: 80px;
+}
+table{
+	border-spacing: 0;
+}
+table tr th{
+	min-width: 70px;
+	text-align: center;
+	color: #008EFE;
+}
+table tr th,table tr td{
+	padding: 3px 0;
+	line-height: 20px;
+}
+table tr td:first-child{
+	text-align: right;
+	padding-right: 5px;
+}
+#skill td[colspan="4"] div{
+	width: 0;
+	overflow: hidden;
+	transition: all 1s 0.5s;
+}
+#skill td[colspan="4"] div span{
+	display: inline-block;
+	height: 16px;
+	margin-top: 5px;
+	background-color: #99F;
+}
+#skill.open td[colspan="4"] div{
+	width: 100%;
+}
+.col3{
+	height: 540px;
+	overflow: hidden;
+	margin-left: 80px;
+}
+.cols section h3,
+.rows section h3{
+	font-size: 18px;
+	line-height: 20px;
+	margin: 24px 0 14px;
+	padding-left: 5px;
+	border-left: solid 4px #00A2FF;
+}
+.col3 section:first-child h3{
+	margin-top: 0;
+}
+.cols section p,
+.rows section p{
+	font-size: 13px;
+	line-height: 16px;
+	margin: 10px 0;
+}
+/* page about */
+#about{
+	background-color: #333;
+	color: #EEE;
+}
+#about .rows{
+	height: 540px;
+	overflow: hidden;
+}
+.rows h2,
+.rows section{
+	float: left;
+}
+.rows section{
+	margin-left: 40px;
+	min-width: 260px;
+}
+#about .row1,
+#about .row2{
+	height: 270px;
+}
+#about .row1 h2,
+#about .row2 h2{
+	border-color: #EEE;
+}
+.row1 h2{
+	margin-top: 80px;
+}
+.row2 h2{
+	margin-top: 60px;
+}
+/* page works */
+#works h1{
+	text-align: center;
+}
+#works .link{
+	margin-left: 600px;
+}
+#works .row1 h2,
+#works .row2 h2{
+	margin-left: 160px;
+}
+#works .row2 h2{
+	margin-top: 100px;
+}
+/* page contact */
+#contact{
+	background-color: #333;
+	color: #EEE;
+}
+#contact h3,
+#contact ul{
+	width: 300px;
+	border: solid 4px #6B6B6B;
+	line-height: 50px;
+}
+#contact h3{
+	height: 50px;
+	margin: 150px auto 15px;
+	text-align: center;
+}
+#contact ul{
+	height: 206px;
+	margin: 0 auto;
+	padding: 0;
+}
+#contact ul li{
+	list-style: none;
+	border-top: solid 2px #6B6B6B;
+	font-size: 18px;
+	padding-left: 50px;
+}
+#contact ul li.weibo{
+	background-position: 10px -35px;
+}
+#contact ul li.github{
+	background-position: 10px -85px;
+}
+#contact ul li.email{
+	background-position: 10px -135px;
+}
+#contact ul li.phone{
+	background-position: 10px -185px;
+}
+#contact ul li:first-child{
+	border: 0;
+}
+#contact ul li a{
+	color: #EEE;
+	text-decoration: none;
+}
+#contact ul li a:hover{
+	color: #6B6B6B;
+}
