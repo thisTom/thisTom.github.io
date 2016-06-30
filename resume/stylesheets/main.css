@@ -172,7 +172,7 @@ section .content{
 	transition: all 1.5s ease 0.8s;
 }
 #mask1{
-	top: 50px;
+	top: 25px;
 	left: 2%;
 
 }
@@ -188,7 +188,7 @@ section .content{
 
 }
 #mask2{
-	top: 307px;
+	top: 350px;
 	left: 2%;
 
 }
@@ -251,7 +251,7 @@ section .content{
 
 body.open #cover #mask1{
 	width: 100%;
-	left: -80%;
+	left: -85%;
 	box-shadow: -4px 4px 4px #222;
 	-webkit-transform: rotate(-35deg);
 	-moz-transform: rotate(-35deg);
@@ -260,7 +260,7 @@ body.open #cover #mask1{
 }
 body.open #cover #mask2{
 	width: 100%;
-	left: 80%;
+	left: 85%;
 	-webkit-box-shadow: 4px -4px 4px #222;
 	-moz-box-shadow: 4px -4px 4px #222;
 	box-shadow: 4px -4px 4px #222;

@@ -4,10 +4,10 @@
 }
 
 body {
-	background: black url(../media/bassPage-BG.jpg) no-repeat right top;
-	background-size: cover;
+	background: black url(../media/bassPage-BG.jpg) no-repeat right top / cover fixed;
 	overflow: hidden;
 	font-family: "微软雅黑";
+	font-size: 16px; /*1em*/
 	height: 100vh;
 }
 
@@ -26,12 +26,11 @@ section,
 summary {
 	display: block;
 }
-
-nav #projects li {
+nav #projects>li {
 	background: url(../media/nav-BG.png) no-repeat center 5px;
 	background-size: 50%;
 	line-height: 120px;
-	font-size: 12px;
+	font-size: .75em;
 	font-weight: 300;
 	color: white;
 	text-align: center;
@@ -46,7 +45,7 @@ nav #projects li {
 	background-size: 60% !important;
 }
 
-nav #projects li:hover {
+nav #projects>li:hover {
 	border: 1px dotted white;
 	background-color: #1d272e;
 }
@@ -62,8 +61,7 @@ nav #projects li:hover {
 	position: absolute;
 	bottom: -29px;
 	color: white;
-	font-family: "微软雅黑";
-	font-size: 13px;
+	font-size: .8125em;
 	transition: all .4s;
 }
 
@@ -72,7 +70,7 @@ nav #projects li:hover {
 }
 
 #footerBar li {
-	float: left;
+
 	list-style: none;
 }
 
@@ -81,7 +79,7 @@ nav #projects li:hover {
 }
 
 .start {
-	display: inline-block;
+	float: left;
 	background: url(../media/footerIcon.jpg) no-repeat left top;
 	width: 34px;
 	height: 30px;
@@ -90,23 +88,36 @@ nav #projects li:hover {
 .start:hover {
 	background-position: -35px top;
 }
-
+.search{
+	float: left;
+	width: 18%;
+	margin-left: 1%;
+}
 .search input {
-	width: 250px;
-	margin-left: 10px;
+	width: 100%;
 	margin-top: 2px;
 	height: 26px;
 	border: none;
 	padding-left: 5px;
 }
 
+.workingProject{
+	width: 40px;
+	height: 30px;
+	background-image: url(../media/smallShowContent.png);
+	float: left;
+	display: none;
+}
+.workingProject:hover{
+	background-image: url(../media/smallShowContentHover.png);
+}
+
 .copyRight {
-	text-align: center;
-	line-height: 20px;
-	font-size: 13px;
+	line-height: 30px;
 	font-weight: 300;
-	margin-left: 470px;
-	padding: 5px 20px;
+	float: right;
+	margin: 0 3%;
+	padding: 0 1%;
 }
 
 .copyRight span {
@@ -114,11 +125,11 @@ nav #projects li:hover {
 }
 
 .time {
-	width: 180px;
 	height: 30px;
 	line-height: 30px;
-	text-align: center;
-	margin-left: 30px;
+	float: right;
+	padding: 0 1.2%;
+
 }
 
 .loading {
@@ -176,8 +187,7 @@ nav #projects li:hover {
 }
 .tips{
 	color: white;
-	font-family: "微软雅黑";
-	font-size: 13px;
+	font-size: .8125em;
 	background-color: black;
 	text-align: center;
 	padding: 20px;
@@ -189,4 +199,88 @@ nav #projects li:hover {
 	transition: all .4s;
 	opacity: 1;
 	transition-delay: 2s;
+}
+#showContent0::before, #showContent1::before, #showContent2::before{
+	background: black url(../media/bassPage-BG.jpg) no-repeat right top / cover fixed;
+	content: '';
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	margin: -30px;
+	z-index: -1;
+	-webkit-filter: blur(20px);
+	filter: blur(20px);
+}
+#showContent0,#showContent1,#showContent2{
+	position: absolute;
+	left: 0;right: 0;top: 0;bottom: 0;
+	margin: auto;
+	width: 85%;
+	height: 85%;
+	padding-top: 30px;
+	box-sizing: border-box;
+	background: hsla(0,0%,100%,.25) border-box;
+	overflow: hidden;
+	border-bottom-left-radius: .5em;
+	border-bottom-right-radius: .5em;
+	box-shadow: 0 0 0 1px hsla(0,0%,100%,.3) inset,
+	            0 .5em 1em rgba(0, 0, 0, 0.6);
+	            
+	transition: all .3s;
+	display: none;
+}
+.minClicked{}
+.maxClicked{}
+.closeClicked{
+	display: none !important;
+}
+#showContent0.minClicked{
+	top: 73%;
+	left: -50%;
+	transform: scale(.2);
+	z-index: -1;
+	opacity: 0;
+}
+#showContent1.minClicked{
+	top: 73%;
+	left: -40%;
+	transform: scale(.2);
+	z-index: -1;
+	opacity: 0;
+}
+#showContent2.minClicked{
+	top: 73%;
+	left: -35%;
+	transform: scale(.2);
+	z-index: -1;
+	opacity: 0;
+}
+
+#frameNav{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+#frameNav li{
+	float: left;
+	width: 45px;
+	height: 30px;
+	list-style: none;
+	text-align: center;
+	line-height: 30px;
+	color: white;
+	font: bold 1.25em / 30px "微软雅黑";
+	cursor: pointer;
+}
+#frameNav li:hover{
+	color: black;
+	background-color: white;
+}
+.close:hover{
+	background-color: red !important;
+}
+.min{
+}
+.max{
+}
+.close{
 }

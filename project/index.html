@@ -7,29 +7,65 @@
 		<script src="js/bassPage.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-	<body>
+	<body onselectstart="return false">
 		<!--nav start-->
 		<nav>
 			<ul id="projects">
-				<li class="selfInfo">个人信息</li>
-				<li class="">Slides</li>
-				<li class="">Ship-Game</li>
-				<li class=""></li>
-				<li class=""></li>
-				<li class=""></li>
+				<li class="selfInfo">个人简历
+					<div id="showContent0">
+						<ul id="frameNav">
+							<li class="min">-</li>
+							<li class="max">❏</li>
+							<li class="close">×</li>
+						</ul>
+						<iframe src="../resume/index.html" width="100%" height="100%" border="0"></iframe>
+					</div>
+				</li>
+				<li class="curve">Canvas curve
+					<div id="showContent1">
+						<ul id="frameNav">
+							<li class="min">-</li>
+							<li class="max">❏</li>
+							<li class="close">×</li>
+						</ul>
+						<iframe src="../canvas/multiple-curve.html" width="100%" height="100%" border="0"></iframe>
+					</div>
+				</li>
+				<li class="shipGame">Canvas game
+					<div id="showContent2">
+						<ul id="frameNav">
+							<li class="min">-</li>
+							<li class="max">❏</li>
+							<li class="close">×</li>
+						</ul>
+						<iframe src="../canvas/ship-game.html" width="100%" height="100%" border="0"></iframe>
+					</div>
+				</li>
+				<li class="">***</li>
+				<li class="">***</li>
+				<li class="">***</li>
 			</ul>
 		</nav>
-		<!--show content start-->
-		<div id="showContent"></div>
+		
 		<!--footer start-->
 		<ul id="footerBar">
 			<li class="start"></li>
 			<li class="search">
 				<input type="search" name="" placeholder="Search the web and windows">
 			</li>
-			<li class="copyRight">copyRight 2016-2017, design and developed by <span>thisTom</span></li>
+			
+			<!--working projects-->
+			<li class="workingProject"></li>
+			<li class="workingProject"></li>
+			<li class="workingProject"></li>
+			
+			
 			<li class="time"></li>
+			<li class="copyRight">copyRight 2016-2017, design and developed by <span>thisTom</span></li>
+
 		</ul>
+		
+		
 		<!--载入动画-->
 		<div class="loading">loading SOMETHINGS</div>
 		<!--tip框-->

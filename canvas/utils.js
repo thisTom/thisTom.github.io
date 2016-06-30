@@ -1,3 +1,9 @@
+
+/* 
+ * utility对象保存通用方法
+ */
+window.utils = {};
+
 /**
  * start requestAnimationFrame
  */
@@ -22,11 +28,6 @@ if (!window.cancelRequestAnimationFrame) {
 		window.oCancelRequestAnimationFrame ||
 		window.clearTimeout);
 }
-
-/* 
- * utility对象保存通用方法
- */
-window.utils = {};
 
 /**
  * 捕获鼠标坐标，相对于element参数

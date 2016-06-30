@@ -1,32 +1,8 @@
-/**
- * start requestAnimationFrame
- */
-if (!window.requestAnimationFrame) {
-	window.requestAnimationFrame = (window.webkitRequestAnimationFrame ||
-		window.mozRequestAnimationFrame ||
-		window.msRequestAnimationFrame ||
-		window.oRequestAnimationFrame ||
-		function(callback) {
-			return window.setTimeout(callback, 17 /*~ 1000/60*/ );
-		});
-}
-
-/**
- * Cancels an animation frame request.
- */
-if (!window.cancelRequestAnimationFrame) {
-	window.cancelRequestAnimationFrame = (window.cancelAnimationFrame ||
-		window.webkitCancelRequestAnimationFrame ||
-		window.mozCancelRequestAnimationFrame ||
-		window.msCancelRequestAnimationFrame ||
-		window.oCancelRequestAnimationFrame ||
-		window.clearTimeout);
-}
-
 /* 
  * utility对象保存通用方法
  */
 window.utils = {};
+
 
 /**
  * 捕获鼠标坐标，相对于element参数
@@ -120,119 +96,112 @@ window.utils.captureTouch = function(element) {
 	return touch;
 };
 
-/**
- * 转换   utils.parseColor(0xFFFF00) return '#FFFF00'  ulits.parseColor('#FFFF00'or'0xFFFF00' ,true) return 16776960.
- * @param {number|string} color
- * @param {boolean=}      toNumber=false  返回number格式
- * @return {string|number}
- */
-window.utils.parseColor = function(color, toNumber) {
-	if (toNumber === true) {
-		if (typeof color === 'number') {
-			return (color | 0);
+function each(elmts,callback){
+	if(elmts.length){
+		for(var i=0,len=elmts.length;i<len;i++){
+			callback(elmts[i]);
 		}
-		if (typeof color === 'string' && color[0] === '#') {
-			color = color.slice(1);
-		}
-		return window.parseInt(color, 16);
-	} else {
-		if (typeof color === 'number') {
-			color = '#' + ('00000' + (color | 0).toString(16)).substr(-6);
-		}
-		return color;
+	}else{
+		callback(elmts);
 	}
-};
-
-/**
- * 转换一个0xffff00数字格式或者'#ffff00'字符串格式为css风格的颜色: 'rgb(r,g,b)' or 'rgba(r,g,b,a)'
- * @param {number|string} color
- * @param {number}        alpha
- * @return {string}
- */
-window.utils.colorToRGB = function(color, alpha) {
-	//number in octal format or string prefixed with #
-	if (typeof color === 'string' && color[0] === '#') {
-		color = window.parseInt(color.slice(1), 16);
-	}
-	alpha = (alpha === undefined) ? 1 : alpha;
-	//parse hex values
-	var r = color >> 16 & 0xff,
-		g = color >> 8 & 0xff,
-		b = color & 0xff,
-		a = (alpha < 0) ? 0 : ((alpha > 1) ? 1 : alpha);
-	//only use 'rgba' if needed
-	if (a === 1) {
-		return "rgb(" + r + "," + g + "," + b + ")";
-	} else {
-		return "rgba(" + r + "," + g + "," + b + "," + a + ")";
-	}
-};
-
-//ball类
-function Ball(radius, color) {
-	if (radius === undefined) {
-		radius = 40;
-	}
-	if (color === undefined) {
-		color = "#ff0000";
-	}
-	this.Y=Math.round(Math.random()*(canvas.height-50)+25),
-	this.X=Math.round(Math.random()*(canvas.width-50)+25);
-	this.COLOR=['#ffff00','#99ff00','#cc66ff','#ff0000'][Math.floor(Math.random()*4)];
-	this.x = 0;
-	this.y = 0;
-	this.radius = radius;
-	this.rotation = 0;
-	this.scaleX = 1;
-	this.scaleY = 1;
-	this.lineWidth = 0;
 }
 
-Ball.prototype.draw = function(context) {
-	context.save();
-	context.translate(this.x, this.y);
-	context.rotate(this.rotation);
-	context.scale(this.scaleX, this.scaleY);
-	context.lineWidth = this.lineWidth;
-	context.fillStyle = this.color;
-	context.beginPath();
+/**
+* 获取目标子节点/子节点列表
+* parent 目标节点
+* [withTextNode] 是否包含文本节点，默认为 false
+* [n] 获取指定子节点
+*/
 
-	context.arc(0, 0, this.radius, 0, (Math.PI * 2), true);
-	context.closePath();
-	context.fill();
-	if (this.lineWidth > 0) {
-		context.stroke();
+// childs(parent) 获取 parent 的所有子节点（不含文本节点）
+// childs(parent,true) 获取 parent 的所有子节点（包含文本节点）
+// childs(parent,false,2) 获取 parent 的第三个非文本子节点
+
+function childs(parent,withTextNode,n){
+	withTextNode=(withTextNode || false);
+	//console.log("withTextNode:"+withTextNode);
+	if(parent.hasChildNodes()){
+		var childs=parent.childNodes;
+		//console.log(childs.length);
+		if(withTextNode){
+			//console.log("childs");
+			result=childs;
+		}else{
+			var result=new Array();
+			for(var i=0,len=childs.length;i<len;i++){
+				if(childs[i].nodeType!==3){
+					result.push(childs[i]);
+				}
+			}
+		}
+		//console.log("n:"+n);
+		if(n){
+			return result[n];
+		}else{
+			return result;
+		}
+	}else{
+		return null;
 	}
-	context.restore();
-};
-//ship类
-function Ship() {
-	this.x = 0;
-	this.y = 0;
-	this.width = 25;
-	this.height = 20;
-	this.rotation = 0;
-	this.showFlame = false;
 }
-Ship.prototype.draw = function(context) {
-	context.save();
-	context.translate(this.x, this.y);
-	context.rotate(this.rotation);
-	context.lineWidth = 1;
-	context.strokeStyle = "#ffffff";
-	context.beginPath();
-	context.moveTo(10, 0);
-	context.lineTo(-10, 10);
-	context.lineTo(-5, 0);
-	context.lineTo(-10, -10);
-	context.lineTo(10, 0);
-	context.stroke();
-	if (this.showFlame) {
-		context.beginPath();
-		context.moveTo(-7.5, -5);
-		context.lineTo(-15, 0);
-		context.lineTo(-7.5, 5);
-		context.stroke();
+
+// attr(elmt,"type") 获取 elmt 的 type 属性值（elmt 需为单个元素）
+// attr(elmts,"type","value") 设置 elmts 的 type 属性值（elmts 可为元素列表）
+
+function attr(elmts,attr,value){
+	if(value!=undefined){
+		each(elmts,function(elmt){
+			elmt.setAttribute(attr,value);
+		});
+	}else{
+		return elmts.getAttribute(attr);
 	}
-	context.restore();
-};
+}
+
+function hasClass(elmt,value){
+	//console.log("--"+elmt.className.search(" "+value));
+	//console.log(elmt.className.length-value.length-1);
+	if(elmt.className==value || elmt.className.search(value+" ")==0 || elmt.className.search(" "+value)==(elmt.className.length-value.length-1) || elmt.className.search(" "+value+" ")>0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function addClass(elmts,value){
+	each(elmts,function(elmt){
+		if(!hasClass(elmt,value)){
+			elmt.className+=" "+value;
+		}
+	});
+}
+
+function removeClass(elmts,value){
+	each(elmts,function(elmt){
+		if(hasClass(elmt,value)){
+			//elmt.className=elmt.className.replace(value,"");
+			//elmt.className=listArrangement(elmt.className);
+			var list=elmt.className.split(" ");
+			var index=list.indexOf(value);
+			list.splice(index,1);
+			elmt.className=list.join(" ");
+		}
+	});
+}
+
+function toggleClass(elmts,value1,value2){
+	each(elmts,function(elmt){
+		if(hasClass(elmt,value1)){
+			removeClass(elmt,value1);
+			addClass(elmt,value2);
+			console.log("v1");
+		}else if(hasClass(elmt,value2)){
+			removeClass(elmt,value2);
+			addClass(elmt,value1);
+			console.log("v2");
+		}else{
+			addClass(elmt,value1);
+			console.log("v0");
+		}
+	});
+}
