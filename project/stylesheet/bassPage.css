@@ -220,8 +220,8 @@ nav #projects>li:hover {
 	box-sizing: border-box;
 	background: hsla(0,0%,100%,.25) border-box;
 	overflow: hidden;
-	border-bottom-left-radius: .5em;
-	border-bottom-right-radius: .5em;
+	border-bottom-left-radius: .7em;
+	border-bottom-right-radius: .7em;
 	box-shadow: 0 0 0 1px hsla(0,0%,100%,.3) inset,
 	            0 .5em 1em rgba(0, 0, 0, 0.6);
 	            
