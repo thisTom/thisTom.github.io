@@ -12,7 +12,12 @@
 	body > section{
 		overflow: scroll;
 	}
-
+	body{
+		font-size: 12px;
+	}
+	#cover .content h2{
+		width: 250px !important;
+	}
 }
 
 
@@ -214,7 +219,6 @@ section .content{
 	background-color: #444875;
     border-radius: .4em;
     padding: .8em;
-    width: 280px;
     position: absolute;
     left: 10%;
     top: 12%;
@@ -250,7 +254,7 @@ section .content{
     bottom: 12%;
 }
 #cover .content p#open:hover{
-	border-color: #99F;
+	border-color: gainsboro;
 }
 /* cover.open */
 
