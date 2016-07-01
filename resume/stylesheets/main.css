@@ -1,3 +1,19 @@
+
+@media only screen and (max-width:1100px ) {
+	body.open #cover #mask1{
+		top: -30% !important;
+		transform: rotate(-40deg) !important;
+	}
+	body.open #cover #mask2{
+		transform: rotate(-50deg) !important;
+		top: 300% !important;
+		opacity: 0 !important;
+	}
+
+
+}
+
+
 body{
 	margin: 0;
 	background-color: #FFF;
@@ -27,10 +43,10 @@ a{
 }
 nav{
 	position: fixed;
-	z-index: 1000;
-	left: -100px;
-	top: 160px;
-	transition: all 0.5s 0.8s;
+    z-index: 1000;
+    left: -100px;
+    top: 20%;
+    transition: all 0.5s 0.8s;
 }
 body.open nav{
 	left: 0;
@@ -84,29 +100,9 @@ nav ul a:hover span{
 body > section{
 	width: 100%;
 	height: 690px;
-	overflow: hidden;
+	overflow: scroll;
 
 }
-
-@media only screen and (max-width:1000px ) {
-	
-	
-	body > section{
-			overflow: scroll;
-	}
-	body.open #cover{
-		display: none;
-	}
-	
-	#cover .content .letter-top{
-		margin-left: 65px;
-	}
-	#cover .content p#open{
-		margin-left: 700px !important;
-	}
-}
-
-
 body #skill,
 body #about,
 body #works,
@@ -138,27 +134,32 @@ section .content{
 /* page cover */
 #cover{
 	position: absolute;
-	top: 0;
-	z-index: 100;
-	background: url(../images/coverBg.jpg);
+    top: 0;
+    z-index: 100;
+    background: url(../images/coverBg.jpg);
+    height: 100vh;
+    padding: 0px;
 }
 .cover-rotate{
 	transform:rotate(-5deg) scale(0.9);
 	-webkit-transform:rotate(-5deg) scale(0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 .mask{
 	box-sizing: border-box;
-	width: 96%;
-	min-width: 1000px;
-	height: 320px;
-	position: absolute;
-	padding: 1em;
-	border: 1em solid transparent;
-	background: linear-gradient(#ededed, #ededed) padding-box,
-	            repeating-linear-gradient(-45deg, #982829 0, #982829 12.5%, #ededed 0, #ededed 25%, 
-	              #444875 0, #444875 37.5%, #ededed 0, #ededed 50%) 38px / 8em 8em;
-	box-shadow: 2px 2px 8px rgba(0,0,0,.8);
+    width: 96%;
+    height: 45%;
+    position: absolute;
+    padding: 1em;
+    border: 1em solid transparent;
+    background: linear-gradient(#ededed, #ededed) padding-box, repeating-linear-gradient(-45deg, #982829 0, #982829 12.5%, #ededed 0, #ededed 25%, #444875 0, #444875 37.5%, #ededed 0, #ededed 50%) 38px / 8em 8em;
+    box-shadow: .4em .4em .5em rgba(0,0,0,.6);
 }
 .cover-rotate,
 .mask,
@@ -172,8 +173,8 @@ section .content{
 	transition: all 1.5s ease 0.8s;
 }
 #mask1{
-	top: 25px;
-	left: 2%;
+	top: 8%;
+    left: 2%;
 
 }
 #mask1:after{
@@ -188,8 +189,8 @@ section .content{
 
 }
 #mask2{
-	top: 350px;
-	left: 2%;
+	top: 47%;
+    left: 2%;
 
 }
 #mask2:after{
@@ -204,44 +205,48 @@ section .content{
 
 }
 #cover .content{
-	padding-top: 80px;
 	position: relative;
-	height: 700px;
+    height: 100%;
+    width: 100%;
 }
 #cover .content .letter-top{
-	margin-top: 20px;
 	background-color: #444875;
-	border-radius: 5px;
-	padding: 10px 20px;
-	width: 280px;
-	height: 100px;
+    border-radius: .4em;
+    padding: .8em;
+    width: 280px;
+    position: absolute;
+    left: 10%;
+    top: 12%;
 }
 #cover .content h2{
-	
 	text-align: right;
-	width: 280px;
-	margin: 0px;
-	font-size: 26px;
-	color: white;
-	border-bottom: 2px solid white;
+    width: 280px;
+    margin: 0px;
+    font-size: 1.5em;
+    color: white;
+    border-bottom: 2px solid white;
 }
-#cover .content p{
-	font-size: 18px;
-	font-weight: 600;
-	color: white;
-	text-align: right;
+.letter-top p{
+    color: white;
+    text-align: right;
+    padding-top: .5em;
+    font-weight: 600;
+    margin: 0;
+    
 }
 #cover .content p#open{
+	font-size: 1.2em;
+    color: #666;
+    font-weight: 600;
 	display: inline-block;
-	cursor: pointer;
-	margin-top: 300px;
-	margin-left: 740px;
-	padding: 10px;
-	border: solid 6px hsla(0,0%,100%,.5);
-	color: #666;
-	text-align: right;
-	background-color: white;
-	background-clip: padding-box;
+    cursor: pointer;
+    padding: .6em;
+    border: solid 0.5em hsla(0,0%,100%,.5);
+    background-color: white;
+    background-clip: padding-box;
+    position: absolute;
+    right: 10%;
+    bottom: 12%;
 }
 #cover .content p#open:hover{
 	border-color: #99F;
@@ -251,7 +256,7 @@ section .content{
 
 body.open #cover #mask1{
 	width: 100%;
-	left: -85%;
+	left: -80%;
 	box-shadow: -4px 4px 4px #222;
 	-webkit-transform: rotate(-35deg);
 	-moz-transform: rotate(-35deg);
@@ -260,7 +265,7 @@ body.open #cover #mask1{
 }
 body.open #cover #mask2{
 	width: 100%;
-	left: 85%;
+	left: 80%;
 	-webkit-box-shadow: 4px -4px 4px #222;
 	-moz-box-shadow: 4px -4px 4px #222;
 	box-shadow: 4px -4px 4px #222;
@@ -276,6 +281,7 @@ body.open #cover{
 	background: none;
 }
 body.open .cover-rotate{
+	overflow: hidden;
 	transform: none;
 	-webkit-transform: none;
 	-moz-transform: none;
@@ -292,6 +298,7 @@ body.open .cover-rotate{
 	color: #EEE;
 }
 body.open #home{
+	height: 650px;
 	background-color: #333;
 }
 body.open #home #info1,
