@@ -284,9 +284,10 @@ body.open #cover .content{
 }
 body.open #cover{
 	background: none;
+    height: 650px !important;
+    overflow: hidden;
 }
 body.open .cover-rotate{
-	overflow: hidden;
 	transform: none;
 	-webkit-transform: none;
 	-moz-transform: none;
