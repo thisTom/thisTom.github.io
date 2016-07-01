@@ -1,11 +1,9 @@
 window.onload=function () {
-	var Zindex=0; //smallShowContent   zIndex
 	document.getElementsByClassName('loading')[0].style.display='none';	
 	var tips=document.getElementsByClassName('tips')[0];
 	tips.style.right='10px';
-	var startTime=new Date(),
-	nowTime=new Date();
-	
+	var startTime=new Date();
+	//时间日期
 	setInterval('mydate()',1000);
 	mydate=function () {
 		nowTime=new Date();
@@ -15,7 +13,15 @@ window.onload=function () {
 		tips.style.opacity=0;
 	};
 	};
-
+	
+	var projecNavs=document.getElementById("projects");
+	
+	each(projecNavs.getElementsByTagName('iframe'),function addIframeSrc (self) {	
+		//console.log(self)
+		attr(self,'src',attr(self,'name'));
+	})
+	
+	var Zindex=0; //smallShowContent   zIndex
 	var body=document.getElementsByTagName('body')[0];
 	var mouse=utils.captureMouse(body);
 	var opened=null;
@@ -30,11 +36,10 @@ window.onload=function () {
 			footer.removeAttribute('style');
 		}
 		
-	},false)
+	},false);
+	
 //open showContent
-
 	var workingProject=Array.prototype.slice.call(document.getElementsByClassName('workingProject'));
-	var projecNavs=document.getElementById("projects");
 	var classes=['selfInfo','curve','shipGame'];
 	each(childs(projecNavs,false),function addEvent (self) {
 		self.addEventListener('dblclick',function () {
@@ -69,8 +74,6 @@ window.onload=function () {
 	})
 	
 	//minimize to default
-
-	var mouseover=null; //for BUG
 	
 	each(workingProject,function addEvent2 (self) {
 		self.addEventListener('mouseover',function showSmallContent () {
@@ -93,7 +96,6 @@ window.onload=function () {
 			if (smallContent.getAttribute('class')) {
 				smallContent.style.opacity=0;
 			}
-
 		},false)
 		
 		// change to default
@@ -121,22 +123,17 @@ window.onload=function () {
 		self.addEventListener('mouseout',function notHoldSmallContent () {
 			if (self.getAttribute('class')) {
 				self.style.opacity=0;
-				if (!mouseover) {
-					self.style.display='none';
-					
-				}
-			mouseover=false;	
+				self.style.display='none';	
 			}
 		},false);
 		//console.log(childs(self,false,1))
 		self.addEventListener('click',function alsoToDefault () {
-			//console.log(1)
+			//console.log(iframe不能使用鼠标事件  暂时放下)
 		})
 		
 	});
 	
 	//close showContent
-	
 	var close=document.getElementsByClassName('close');
 	each(close,function addEvent4 (self) {
 		self.addEventListener('click',function closeShowContent () {
@@ -149,7 +146,20 @@ window.onload=function () {
 		})
 	})
 	
-
+	//fall screen
+	var max=document.getElementsByClassName('max');
+	each(max,function addEvent5 (self) {
+		self.addEventListener('click',function fullScreen () {
+			var showContent=self.parentNode.parentNode;
+			if (hasClass(showContent,'maxClicked')) {
+				removeClass(showContent,'maxClicked')
+			}else{
+				//console.log(self);
+				//console.log(self.parent);
+				addClass(showContent,'maxClicked');
+			}
+		})
+	})
 	
 	
 	

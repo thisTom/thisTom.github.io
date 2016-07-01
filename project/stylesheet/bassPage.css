@@ -229,7 +229,10 @@ nav #projects>li:hover {
 	display: none;
 }
 .minClicked{}
-.maxClicked{}
+.maxClicked{
+	width: 100% !important;
+	height: 100% !important;
+}
 .closeClicked{
 	display: none !important;
 }
