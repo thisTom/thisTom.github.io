@@ -1,4 +1,5 @@
 window.onload=function () {
+	window.event? window.event.cancelBubble = true : e.stopPropagation();
 	document.getElementsByClassName('loading')[0].style.display='none';	
 	var tips=document.getElementsByClassName('tips')[0];
 	tips.style.right='10px';

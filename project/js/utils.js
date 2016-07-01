@@ -194,14 +194,11 @@ function toggleClass(elmts,value1,value2){
 		if(hasClass(elmt,value1)){
 			removeClass(elmt,value1);
 			addClass(elmt,value2);
-			console.log("v1");
 		}else if(hasClass(elmt,value2)){
 			removeClass(elmt,value2);
 			addClass(elmt,value1);
-			console.log("v2");
 		}else{
 			addClass(elmt,value1);
-			console.log("v0");
 		}
 	});
 }
