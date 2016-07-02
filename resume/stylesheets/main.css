@@ -126,10 +126,7 @@ body #works,
 body #contact{
 	display: none;
 }
-#skill,
-#works{
-	background-color: #EEE;
-}
+
 body.open #skill,
 body.open #about,
 body.open #works,
@@ -269,7 +266,11 @@ section .content{
 }
 /* cover.open */
 
+body.open #cover{
+	background: none;
+    overflow: hidden;
 
+}
 body.open #cover #mask1{
 	width: 100%;
 	top: -10%;
@@ -294,11 +295,6 @@ body.open #cover #mask2{
 }
 body.open #cover .content{
 	visibility: hidden;
-}
-body.open #cover{
-	background: none;
-    overflow: hidden;
-    height: 690px;
 }
 
 /* page home */
@@ -370,7 +366,9 @@ a:hover{
 /* page skill */
 #skill,
 #works{
+	background-color: #EEE;
 	color: #333;
+	height: 700px;
 }
 .col1,
 .col2,

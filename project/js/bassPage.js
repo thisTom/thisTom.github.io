@@ -150,6 +150,9 @@ window.onload=function () {
 			var thisIndex=id.slice(-1);
 			//alert(thisIndex)
 			workingProject[thisIndex].style.display='none';
+			//刷新iframe
+			parent.frames[thisIndex].location.reload();
+			//console.log(typeof(window.parent.frames[thisIndex].document));
 		})
 	})
 	

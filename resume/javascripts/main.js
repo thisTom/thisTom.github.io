@@ -15,7 +15,11 @@ function coverOpen(){
 	//console.log("cover:"+coverOpend());
 	if(!coverOpend()){
 		var body=document.querySelector("body");
+		var cover=document.getElementById('cover')
 		addClass(body,"open");
+		setTimeout(function () {
+			cover.style.height='690px';
+		},1000)
 	}
 }
 function listenerNavClick(e){
