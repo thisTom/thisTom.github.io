@@ -1,5 +1,5 @@
 window.onload=function () {
-	window.event? window.event.cancelBubble = true : e.stopPropagation();
+
 	document.getElementsByClassName('loading')[0].style.display='none';	
 	var tips=document.getElementsByClassName('tips')[0];
 	tips.style.right='10px';
@@ -43,7 +43,9 @@ window.onload=function () {
 	var workingProject=Array.prototype.slice.call(document.getElementsByClassName('workingProject'));
 	var classes=['selfInfo','curve','shipGame'];
 	each(childs(projecNavs,false),function addEvent (self) {
-		self.addEventListener('dblclick',function () {
+		self.addEventListener('click',function () {			
+			window.event? window.event.cancelBubble = true : e.stopPropagation();
+			//console.log(window.event)				
 			var nowShowContent=self.getElementsByTagName('div')[0];
 			nowShowContent.removeAttribute('style');
 			opened=true;
@@ -68,6 +70,8 @@ window.onload=function () {
 	var minimize=document.getElementsByClassName('min');
 	each(minimize,function addEvent1 (self) {
 		self.addEventListener('click',function minClicked () {
+		window.event? window.event.cancelBubble = true : e.stopPropagation();
+		//console.log(window.event)
 		var showContent=this.parentNode.parentNode;					
 		showContent.setAttribute('class','minClicked');	
 		
@@ -138,6 +142,8 @@ window.onload=function () {
 	var close=document.getElementsByClassName('close');
 	each(close,function addEvent4 (self) {
 		self.addEventListener('click',function closeShowContent () {
+			window.event? window.event.cancelBubble = true : e.stopPropagation();
+			//console.log(window.event)
 			var thisShowContent=self.parentNode.parentNode;
 			thisShowContent.setAttribute('class','closeClicked')
 			var id=thisShowContent.getAttribute('id')
@@ -151,6 +157,8 @@ window.onload=function () {
 	var max=document.getElementsByClassName('max');
 	each(max,function addEvent5 (self) {
 		self.addEventListener('click',function fullScreen () {
+			window.event? window.event.cancelBubble = true : e.stopPropagation();
+			//console.log(window.event)
 			var showContent=self.parentNode.parentNode;
 			if (hasClass(showContent,'maxClicked')) {
 				removeClass(showContent,'maxClicked')

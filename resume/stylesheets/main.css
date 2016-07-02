@@ -1,7 +1,8 @@
 
 @media only screen and (max-width:1100px ) {
+	
 	body.open #cover #mask1{
-		top: -30% !important;
+		top: -100% !important;
 		transform: rotate(-40deg) !important;
 	}
 	body.open #cover #mask2{
@@ -9,23 +10,33 @@
 		top: 300% !important;
 		opacity: 0 !important;
 	}
+	body.open #cover{
+		transition-delay: 1s;
+		height: 0 !important;
+	}
 	body > section{
-		overflow: scroll;
+		overflow-x: scroll;
+		overflow-y: hidden;
 	}
 	body{
 		font-size: 12px;
 	}
-	#cover .content h2{
-		width: 250px !important;
+	body.open #info1{
+		right: 5% !important;
+	}
+	body.open #info3{
+		left: 5% !important;
 	}
 }
 
-
+*{
+	padding: 0;margin: 0;
+}
 body{
 	margin: 0;
 	background-color: #EEE;
 	font-family: "microsoft yahei";
-	height: 100vh;
+	height: 100%;
 	overflow: hidden;
 }
 body.open{
@@ -73,25 +84,25 @@ nav ul:hover{
 }
 nav ul a{
 	display: inline-block;
-	min-width: 20px;
-	line-height: 40px;
-	text-align: center;
-	padding: 0 10px;
-	text-decoration: none;
-	color: #CCC;
-	background-color: #34495E;
+    min-width: 1.25em;
+    line-height: 2.5em;
+    text-align: center;
+    padding: 0 .625em;
+    text-decoration: none;
+    color: #CCC;
+    background-color: #d9534f;
 }
 nav ul a[href="#skill"]{
-	background-color: #2980B9;
+	background-color: #337ab7;
 }
 nav ul a[href="#about"]{
-	background-color: #C0392B;
+	background-color: #449d44;
 }
 nav ul a[href="#works"]{
-	background-color: #27AE60;
+	background-color: #31b0d5;
 }
 nav ul a[href="#contact"]{
-	background-color: #2C3E50;
+	background-color: #ec971f;
 }
 nav ul a span{
 	display: none;
@@ -126,14 +137,14 @@ body.open #contact{
 	display: block;
 }
 section .page-title{
-	font-size: 34px;
-	line-height: 40px;
-	margin: 20px 0;
+	font-size: 2.125em;
+	margin-bottom: 1em;
 }
 section .page-title:last-child{
 	text-align: right;
 }
 section .content{
+	padding: 1em 0;
 	width: 1000px;
 	margin: 0px auto;
 }
@@ -143,7 +154,7 @@ section .content{
     top: 0;
     z-index: 100;
     background: url(../images/coverBg.jpg);
-    height: 100vh;
+    height: 100%;
     padding: 0px;
 }
 .cover-rotate{
@@ -225,7 +236,7 @@ section .content{
 }
 #cover .content h2{
 	text-align: right;
-    width: 280px;
+    width: 11em;
     margin: 0px;
     font-size: 1.5em;
     color: white;
@@ -251,7 +262,7 @@ section .content{
     background-clip: padding-box;
     position: absolute;
     right: 10%;
-    bottom: 12%;
+    bottom: 18%;
 }
 #cover .content p#open:hover{
 	border-color: gainsboro;
@@ -261,6 +272,7 @@ section .content{
 
 body.open #cover #mask1{
 	width: 100%;
+	top: -10%;
 	left: -80%;
 	box-shadow: -4px 4px 4px #222;
 	-webkit-transform: rotate(-35deg);
@@ -270,6 +282,7 @@ body.open #cover #mask1{
 }
 body.open #cover #mask2{
 	width: 100%;
+	top: 65%;
 	left: 80%;
 	-webkit-box-shadow: 4px -4px 4px #222;
 	-moz-box-shadow: 4px -4px 4px #222;
@@ -284,69 +297,69 @@ body.open #cover .content{
 }
 body.open #cover{
 	background: none;
-    height: 650px !important;
     overflow: hidden;
+    height: 690px;
 }
-body.open .cover-rotate{
-	transform: none;
-	-webkit-transform: none;
-	-moz-transform: none;
-}
+
 /* page home */
-#home #info1,
-#home #info2,
-#home #info3{
-	opacity: 0;
-	
-}
+
 #home{
-	background-color: #FFF;
 	color: #EEE;
+	position: relative;
+	overflow: hidden;
 }
 body.open #home{
-	height: 650px;
 	background-color: #333;
 }
-body.open #home #info1,
-body.open #home #info2,
-body.open #home #info3{
-	position: relative;
-	opacity: 1;
-	z-index: 1000;
-}
+
 body.open #home #info1{
-	margin-left: 110px;
+	opacity: 1;
+	right: 25%;
+}
+body.open #home #info2{
+	opacity: 1;	
 }
 body.open #home #info3{
-	margin-left: 150px;
+	opacity: 1;	
+	left: 25%;
 }
+
+
+#info1,
+#info2,
+#info3,
 #myPhoto{
 	opacity: 0;
+	z-index: 1000;
+	position: absolute;
 	display: inline-block;
-	border: solid 8px hsl(0, 0%, 100%);
-	margin-left: 280px;
-	margin-top: 140px;
-	float: left;
-	position: relative;
+}
+#info1{
+	top: 10%;
+	right: 10%;
+	text-align: right;
+}
+#info2{
+	top: 58%;
+	right: 30%;
+	font-size: 1.25em;
+	padding-left: 1.5em;
+	font-weight: 600;
+}
+#info3{
+	bottom: 20%;
+	left: 10%;
+}
+#myPhoto{
+	top: 0;left: 0;right: 0;bottom: 20%;
+	margin: auto;
+	width: 10em;
+
 }
 body.open #home #myPhoto{
 	opacity: 1;
-	box-shadow: 4px 4px 8px rgb(0,0,0);
-}
-#info1{
-	float: left;
-	margin-left: 300px;
-	margin-top: 120px;
-}
-#info2{
-	margin-left: 540px;
-	margin-top: 40px;
-	font-size: 24px;
-	font-weight: bold;
-	background-position: 180px 10px;
-}
-#info3{
-
+	border: solid 0.5em #FFFFFF;
+	box-shadow: 4px 4px 8px #000000;
 }
 a{
 	color: #AAF;

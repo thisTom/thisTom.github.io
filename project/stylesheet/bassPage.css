@@ -8,7 +8,7 @@ body {
 	overflow: hidden;
 	font-family: "微软雅黑";
 	font-size: 16px; /*1em*/
-	height: 100vh;
+	height: 100%;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -70,7 +70,7 @@ nav #projects>li:hover {
 	background: rgba(0, 0, 0, .7);
 	width: 100%;
 	height: 30px;
-	position: absolute;
+	position: fixed;
 	bottom: -29px;
 	color: white;
 	font-size: .8125em;
@@ -237,8 +237,7 @@ nav #projects>li:hover {
 	overflow: hidden;
 	border-bottom-left-radius: .7em;
 	border-bottom-right-radius: .7em;
-	box-shadow: 0 0 0 1px hsla(0,0%,100%,.3) inset,
-	            0 .5em 1em rgba(0, 0, 0, 0.6);
+	box-shadow: 0 0 0 1px hsla(0,0%,100%,.3);
 	            
 	transition: all .3s;
 	display: none;
