@@ -115,11 +115,3 @@ function toggleClass(elmts,value1,value2){
 	});
 }
 
-function listArrangement(list){
-	console.log(list);
-	list=list.trim();
-	console.log(list);
-	list=list.replace("  "," ");
-	console.log(list);
-	return list;
-}

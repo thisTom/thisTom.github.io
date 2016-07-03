@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>3D台轮播</title>
+		<style type="text/css">
+			*{margin: 0px; padding: 0px;}
+			#banner{
+				width: 1190px;
+				height: 330px;
+				margin:50px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			.pre{
+				position: absolute;
+				left: 30px;
+				top: 50%;
+				margin-top: -52px;
+				z-index: 4;
+				cursor: pointer;
+			}
+			.next{
+				position: absolute;
+				right: 30px;
+				top: 50%;
+				margin-top: -52px;
+				z-index: 4;
+				cursor: pointer;
+
+			}
+			.wrap{
+				width: 100%;
+				height: 290px;
+				position: relative;
+			}
+			.wrap .blackBg{
+				position: absolute;
+				width: 1190px;
+				height: 224px;
+				z-index: 3;
+				top: 25px;
+				left: 0px;
+				background-color: rgba(0,0,0,0.5);
+			}
+			.wrap ul li{
+				list-style: none;
+				box-shadow:0px 0px 12px whitesmoke;
+				-webkit-box-shadow: 0px 0px 12px whitesmoke;
+				position: absolute;
+			}
+			.wrap ul li a{
+				display: block;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				z-index: 3;
+				
+			}
+			
+			.wrap ul li img{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			.bottomnav{
+				width: 100%;
+				height: 20px;
+			}
+			.bottomnav ul{
+				width: 260px;
+				height: 20px;
+				margin: auto;
+			}
+			.bottomnav ul li{
+				list-style: none;
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				float: left;
+				margin: auto 5px;
+			}
+			.buttomOff{
+				background-color: gray;
+			}
+			.buttomOn{
+				background-color: skyblue;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="banner">
+			<div class="button">
+				<img class="pre" width="45px" height="45px" src="images/left.png" alt="pre" />
+				<img class="next" width="45px" height="45px" src="images/right.png" alt="next" />
+			</div>
+			<div class="wrap">
+				<ul>
+				<div class="blackBg">
+					
+				</div>
+				<li style="width: 530px;height: 100px;left: -530px;opacity: 0;z-index: 0; top: 85px;" ><a href="#"></a><img src="images/1.jpg" alt="" /></li>
+				<li style="width: 530px;height: 100px;left: -530px;opacity: 0;z-index: 0; top: 85px;"><a href="#"></a><img  src="images/2.jpg" alt="" /></li>
+				<li style="width: 530px;height: 100px;left: -530px;opacity: 0;z-index: 0; top: 85px;"><a href="#"></a><img  src="images/3.jpg" alt="" /></li>
+                <li style="width: 530px;height: 100px;left: -530px;opacity: 0;z-index: 0; top: 85px;"><a href="#"></a><img  src="images/4.jpg" alt="" /></li>
+				<li style="width: 530px;height: 224px;left: 0px;opacity: 1;z-index: 2; top: 25px;"><a href="#"></a><img  src="images/5.jpg" alt="" /></li>
+				<li style="width: 640px;height: 270px;left: 275px;opacity: 1;z-index: 3;top: 0px;"><a href="#"></a><img  src="images/6.jpg" alt="" /></li>
+				<li style="width: 530px;height: 224px;left: 660px;opacity: 1;z-index: 2;top: 25px;"><a href="#"></a><img  src="images/7.jpg" alt="" /></li>
+				<li style="width: 530px;height: 100px;left: 1190px;opacity: 0;z-index: 0;top: 85px;"><a href="#"></a><img  src="images/8.jpg" alt="" /></li>
+				<li style="width: 530px;height: 100px;left: 1190px;opacity: 0;z-index: 0;top: 85px;"><a href="#"></a><img  src="images/9.jpg" alt="" /></li>
+				<li style="width: 530px;height: 100px;left: 1190px;opacity: 0;z-index: 0;top: 85px;"><a href="#"></a><img  src="images/10.jpg" alt="" /></li>
+				<li style="width: 530px;height: 100px;left: 1190px;opacity: 0;z-index: 0;top: 85px;"><a href="#"></a><img  src="images/11.jpg" alt="" /></li>
+				</ul>
+			</div>
+			<div class="bottomnav">
+				<ul>
+				<li class="buttomOff"></li>
+				<li class="buttomOff"></li>
+				<li class="buttomOff"></li>
+				<li class="buttomOff"></li>
+				<li class="buttomOff"></li>
+				<li class="buttomOff buttomOn"></li>
+				<li class="buttomOff"></li>
+				<li class="buttomOff"></li>
+				<li class="buttomOff"></li>
+				<li class="buttomOff"></li>
+				<li class="buttomOff"></li>
+                </ul>
+			</div>
+		</div>
+		
+		
+	</body>
+	<script src="js/jquery.js"></script>
+	<script>
+
+		$(document).ready(function(){
+					
+			var arrW = [], arrH = [], arrT = [], arrL = [], arrZ = [], arrOp=[];	
+			var value, a=0, time=new Date(), objlength=$('.wrap ul li').length, obj=$('.wrap ul li') ;
+			var radBtn=$('.bottomnav ul li');
+			var changePosition=0;
+			function move (value) {	
+
+			for (i=0 ; i<objlength ; i++) {
+				arrW [i]=obj.eq(i).css('width')
+				arrH [i]=obj.eq(i).css('height')
+				arrL [i]=obj.eq(i).css('left')
+				arrT [i]=obj.eq(i).css('top')
+				arrZ [i]=obj.eq(i).css('z-index')
+				arrOp[i]=obj.eq(i).css('opacity')
+			};
+			
+			for (i=0 ; i<objlength ; i++) {
+					if (value==0) {
+						if (i==0) {
+							a=10
+						}
+						else{a=i-1};
+					};
+
+					if (value==1) {
+						if (i==10) {
+							a=0
+						}
+						else{a=i+1};
+					};
+
+					obj.eq(i).animate(
+					{
+						width:arrW[a],
+						height:arrH[a],
+						left:arrL[a],
+						top:arrT[a],
+						opacity:arrOp[a]
+					},500);
+					obj.eq(i).css('z-index',arrZ[a]);
+					
+			};
+			
+					$('.blackBg').hide(1,function fadein () {
+					$(this).fadeToggle(500);
+					});
+			};
+	
+				$('.pre').click(function (value) {
+				var newtime=new Date();
+				if ((newtime-time)>500) {
+					value=0;
+					changePosition=0;
+					move(value);
+					var defautNmu=radBtn.parent().find('.buttomOn').index();
+					num=defautNmu-1;
+					
+					if (num<0) {
+						num=10;
+					}
+					//console.log(num);
+					radBtn.eq(num).addClass('buttomOn').siblings().removeClass('buttomOn');
+						
+					time=new Date();
+				}
+				});	
+			$('.next').click(function (value){
+				var newtime=new Date();
+				if ((newtime-time)>500) {
+					value=1;
+					changePosition=1;
+					move(value);
+					var defautNmu=radBtn.parent().find('.buttomOn').index();
+					num=defautNmu+1;
+					if (num>10) {
+						num=0;
+					}
+					//console.log(num);
+					radBtn.eq(num).addClass('buttomOn').siblings().removeClass('buttomOn');
+					time=new Date();
+				}
+			});
+			
+			
+			function autoPlay () {
+			
+			setTime=setInterval(function timing() {
+				
+					move(changePosition);
+					var defautNmu=radBtn.parent().find('.buttomOn').index();
+					num=defautNmu-1;
+
+					if (num<0) {
+						num=10;
+					}
+					//console.log(num);
+					radBtn.eq(num).addClass('buttomOn').siblings().removeClass('buttomOn');
+
+			},2000);
+			
+			};
+			autoPlay();
+			$('.wrap,.pre,.next').hover(
+				function  () {clearInterval(setTime)},  function  () {autoPlay();}
+			);
+			
+			
+		});
+			
+			
+
+			
+
+	</script>
+</html>

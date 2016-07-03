@@ -41,29 +41,61 @@ window.onload=function () {
 	
 //open showContent
 	var workingProject=Array.prototype.slice.call(document.getElementsByClassName('workingProject'));
-	var classes=['selfInfo','curve','shipGame'];
+	var classes=['selfInfo','canvas',' ','slide'];
 	each(childs(projecNavs,false),function addEvent (self) {
 		self.addEventListener('click',function () {			
 			window.event? window.event.cancelBubble = true : e.stopPropagation();
-			//console.log(window.event)				
-			var nowShowContent=self.getElementsByTagName('div')[0];
-			nowShowContent.removeAttribute('style');
+			//console.log(window.event)	
+			var firstShowContent=self.getElementsByTagName('div')[0];
+			var secShowContent=self.getElementsByTagName('div')[1];
+			//console.log(secShowContent)
+			firstShowContent.removeAttribute('style');
 			opened=true;
 			if (opened) {
 				setTimeout(function () {
 					footer.removeAttribute('style');
 				},2000);
 			}
-			nowShowContent.style.display='block';
-			nowShowContent.style.zIndex=(Zindex++);
+			firstShowContent.style.display='block';
+			firstShowContent.style.zIndex=(Zindex++);
 			var nowClass=self.getAttribute('class');
 			var _index=classes.indexOf(nowClass);
 			workingProject[_index].style.display='block';
 			workingProject[_index].setAttribute('name',_index);
 			//弹回窗口
-			nowShowContent.setAttribute('class','')
+			removeClass(firstShowContent,'minClicked');
+			removeClass(firstShowContent,'closeClicked');
 		},false)
 	})
+	
+	
+	var filmItem=document.getElementsByClassName('filmItem');
+	each(filmItem,function (eachFilmItem) {
+		var itemLi=eachFilmItem.getElementsByTagName('li');
+		//console.log(itemLi)
+		each(itemLi,function addEvent (self) {
+			var frameSrc=self.getAttribute('name');
+			var showContent=self.parentNode.parentNode.parentNode.getElementsByTagName('div')[1];
+			self.addEventListener('click',function changeLocation () {
+				showContent.getElementsByTagName('iframe')[0].setAttribute('src',frameSrc);
+				setTimeout(function () {
+					removeClass(showContent,'minClicked');
+					removeClass(showContent,'closeClicked');
+					showContent.style.display='block';
+					showContent.style.opacity=1;
+					showContent.style.zIndex=(Zindex++);				
+				},500)
+			var nowClass=showContent.parentNode.getAttribute('class');
+			//console.log(nowClass)
+			var _index=classes.indexOf(nowClass)+1;
+			workingProject[_index].style.display='block';
+			workingProject[_index].setAttribute('name',_index);				
+
+
+			})
+	})
+	})
+	
 	
 //showContent event start
 	//minimize
@@ -73,7 +105,7 @@ window.onload=function () {
 		window.event? window.event.cancelBubble = true : e.stopPropagation();
 		//console.log(window.event)
 		var showContent=this.parentNode.parentNode;					
-		showContent.setAttribute('class','minClicked');	
+		addClass(showContent,'minClicked');	
 		
 	},false)
 	})
@@ -83,32 +115,30 @@ window.onload=function () {
 	each(workingProject,function addEvent2 (self) {
 		self.addEventListener('mouseover',function showSmallContent () {
 			//console.log(self.getAttribute('name'))
-			//console.log(childs(projecNavs,false,self.getAttribute('name')))
-			var smallContent=childs(projecNavs,false,self.getAttribute('name')).getElementsByTagName('div')[0]
-			if (smallContent.getAttribute('class')) {
+			var smallContent=document.getElementsByClassName('show')[self.getAttribute('name')];
+			//console.log(smallContent)
+			if (hasClass(smallContent,'minClicked')) {
 				smallContent.style.opacity=1;
 				smallContent.style.display='block';
 				smallContent.style.zIndex=(Zindex++);
-				mouseover=true;
 			}
 
 		},false)
 		
 		self.addEventListener('mouseout',function hideSmallContent () {
 			//console.log(self.getAttribute('name'))
-			//console.log(childs(projecNavs,false,self.getAttribute('name')))
-			var smallContent=childs(projecNavs,false,self.getAttribute('name')).getElementsByTagName('div')[0]
-			if (smallContent.getAttribute('class')) {
+			var smallContent=document.getElementsByClassName('show')[self.getAttribute('name')];
+			if (hasClass(smallContent,'minClicked')) {
 				smallContent.style.opacity=0;
 			}
 		},false)
 		
 		// change to default
 		self.addEventListener('click',function toDefault () {
-			var smallContent=childs(projecNavs,false,self.getAttribute('name')).getElementsByTagName('div')[0]
+			var smallContent=document.getElementsByClassName('show')[self.getAttribute('name')];
 			//console.log(smallContent);
 			smallContent.removeAttribute('style');
-			smallContent.setAttribute('class','');
+			removeClass(smallContent,'minClicked')
 			smallContent.style.display='block';
 			smallContent.style.zIndex=(Zindex++);
 		})
@@ -118,7 +148,7 @@ window.onload=function () {
 	each(projecNavs.getElementsByTagName('div'),function addEvent3 (self) {
 		//console.log(self);
 		self.addEventListener('mouseover',function holdSmallContent () {
-			if (self.getAttribute('class')) {
+			if (hasClass(self,'minClicked')) {
 				//console.log(self);
 				self.style.display='block';
 				self.style.opacity=1;
@@ -126,7 +156,7 @@ window.onload=function () {
 			}
 		},false)
 		self.addEventListener('mouseout',function notHoldSmallContent () {
-			if (self.getAttribute('class')) {
+			if (hasClass(self,'minClicked')) {
 				self.style.opacity=0;
 				self.style.display='none';	
 			}
@@ -145,18 +175,20 @@ window.onload=function () {
 			window.event? window.event.cancelBubble = true : e.stopPropagation();
 			//console.log(window.event)
 			var thisShowContent=self.parentNode.parentNode;
-			thisShowContent.setAttribute('class','closeClicked')
+			addClass(thisShowContent,'closeClicked')
 			var id=thisShowContent.getAttribute('id')
 			var thisIndex=id.slice(-1);
 			//alert(thisIndex)
 			workingProject[thisIndex].style.display='none';
 			//刷新iframe
-			parent.frames[thisIndex].location.reload();
+			if (thisIndex<3) {
+				parent.frames[thisIndex].location.reload();
+			}
 			//console.log(typeof(window.parent.frames[thisIndex].document));
 		})
 	})
 	
-	//fall screen
+	//full screen
 	var max=document.getElementsByClassName('max');
 	each(max,function addEvent5 (self) {
 		self.addEventListener('click',function fullScreen () {

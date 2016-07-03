@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>背景轮播</title>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;}
+			#con{
+				width: 1017px;
+				height: 523px;
+				margin: 50px auto;
+				position:relative ;
+			}
+			.wrap img{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			.smallCon{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				height: 100%;
+				width: 100%;
+			}
+			.smallCon li{
+				list-style: none;
+				width: 337px;
+				height: 173px;
+				border: solid 1px white;
+				float: left;
+				position: relative;
+			}
+			
+			.smallCon li img{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0px;
+				left: 0px;
+				opacity: 0;
+				transition: all 0.5s;
+			}
+			.smallCon li p{
+				position: absolute;
+				color: white;
+				font-family: "微软雅黑";
+				top: 0px;
+				left: 0px;
+				padding: 10px;
+			}
+			#bg{
+				transition: all 1s;
+			}
+			#logo{
+				width: 80px;
+				height: 60px;
+				position: absolute;
+				top: -20px;
+				left: -20px;
+				display: block;
+				opacity: 1;
+			}
+			.smallCon li:hover img{
+				opacity: 1;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="con">
+			<div class="wrap">
+				<img src="img/bg1.jpg" width="100%"; height="100%" />
+				<img src="img/bg2.jpg" width="100%"; height="100%" />
+			</div>
+
+			<ul class="smallCon">
+				<li><img id="logo" src="img/logo.png"/></li>
+				<li><img src="img/1.jpg"/><p>青春<br />YOUTH</p></li>
+				<li><img src="img/2.jpg"/><p>品牌介绍<br />ABOUT UR</p></li>
+				<li><img src="img/3.jpg"/><p>儿童<br />KIDS</p></li>
+				<li><img src="img/4.jpg"/><p>女士<br />WOMEN</p></li>
+				<li><img src="img/5.jpg"/><p>活动<br />EVENT</p></li>
+				<li><img src="img/6.jpg"/><p>店铺<br />STORE</p></li>
+				<li><img src="img/7.jpg"/><p>男士<br />MAN</p></li>
+				<li><img src="img/8.jpg"/><p>加盟商招募<br />FRANCHISEE RECRUIT</p></li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		//alert($);
+		$(function(){
+			var _index=1
+			$('.wrap img').eq(_index).fadeOut();
+			setInterval(function play () {
+				_index++
+				if (_index==2) {
+					_index=0	
+				}
+				$('.wrap img').eq(_index).fadeIn(2000).siblings().fadeOut(2000);
+			},4000);
+			
+		})
+	</script>
+</html>
