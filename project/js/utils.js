@@ -158,14 +158,9 @@ function attr(elmts,attr,value){
 	}
 }
 
-function hasClass(elmt,value){
-	//console.log("--"+elmt.className.search(" "+value));
-	//console.log(elmt.className.length-value.length-1);
-	if(elmt.className==value || elmt.className.search(value+" ")==0 || elmt.className.search(" "+value)==(elmt.className.length-value.length-1) || elmt.className.search(" "+value+" ")>0){
-		return true;
-	}else{
-		return false;
-	}
+// hasClass, takes two params: element and classname
+function hasClass(el, cls) {
+  return el.className && new RegExp("(\\s|^)" + cls + "(\\s|$)").test(el.className);
 }
 
 function addClass(elmts,value){
@@ -176,17 +171,10 @@ function addClass(elmts,value){
 	});
 }
 
-function removeClass(elmts,value){
-	each(elmts,function(elmt){
-		if(hasClass(elmt,value)){
-			//elmt.className=elmt.className.replace(value,"");
-			//elmt.className=listArrangement(elmt.className);
-			var list=elmt.className.split(" ");
-			var index=list.indexOf(value);
-			list.splice(index,1);
-			elmt.className=list.join(" ");
-		}
-	});
+// removeClass, takes two params: element and classname
+function removeClass(el, cls) {
+  var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+  el.className = el.className.replace(reg, " ").replace(/(^\s*)|(\s*$)/g,"");
 }
 
 function toggleClass(elmts,value1,value2){

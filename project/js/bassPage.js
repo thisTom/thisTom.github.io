@@ -43,8 +43,23 @@ window.onload=function () {
 	var workingProject=Array.prototype.slice.call(document.getElementsByClassName('workingProject'));
 	var classes=['selfInfo','canvas',' ','slide'];
 	each(childs(projecNavs,false),function addEvent (self) {
-		self.addEventListener('click',function () {			
-			window.event? window.event.cancelBubble = true : e.stopPropagation();
+		var object = {
+		  init: function() {
+		    self.addEventListener("dblclick", this, false);
+		    self.addEventListener("touchstart", this, false);
+		  },
+		  handleEvent: function(e) {
+		    switch(e.type) {
+		      case "dblclick":
+		        this.action();
+		        break;
+		      case "touchstart":
+		        this.action();
+		        break;
+		    }
+		  },
+		  action: function() {
+		    window.event? window.event.cancelBubble = true : e.stopPropagation();
 			//console.log(window.event)	
 			var firstShowContent=self.getElementsByTagName('div')[0];
 			var secShowContent=self.getElementsByTagName('div')[1];
@@ -65,7 +80,11 @@ window.onload=function () {
 			//弹回窗口
 			removeClass(firstShowContent,'minClicked');
 			removeClass(firstShowContent,'closeClicked');
-		},false)
+		  }
+		};
+		
+		// Init
+		object.init();		
 	})
 	
 	
