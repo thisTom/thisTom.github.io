@@ -1,4 +1,19 @@
-/* 
+
+function myAddEvent(obj,type,handle){
+    try{  // Chrome、FireFox、Opera、Safari、IE9.0及其以上版本
+        obj.addEventListener(type,handle,false);
+    }catch(e){
+        try{  // IE8.0及其以下版本
+            obj.attachEvent('on' + type,handle);
+        }catch(e){  // 早期浏览器
+            obj['on' + type] = handle;
+        }
+    }
+}
+
+
+
+/*
  * utility对象保存通用方法
  */
 window.utils = {};
@@ -22,7 +37,7 @@ window.utils.captureMouse = function(element) {
 		offsetLeft = element.offsetLeft,
 		offsetTop = element.offsetTop;
 
-	element.addEventListener('mousemove', function(event) {
+	myAddEvent(element,'mousemove', function(event) {
 		var x, y;
 
 		if (event.pageX || event.pageY) {
@@ -62,19 +77,19 @@ window.utils.captureTouch = function(element) {
 		offsetLeft = element.offsetLeft,
 		offsetTop = element.offsetTop;
 
-	element.addEventListener('touchstart', function(event) {
+	myAddEvent(element,'touchstart', function(event) {
 		touch.isPressed = true;
 		touch.event = event;
-	}, false);
+	});
 
-	element.addEventListener('touchend', function(event) {
+	myAddEvent(element,'touchend', function(event) {
 		touch.isPressed = false;
 		touch.x = null;
 		touch.y = null;
 		touch.event = event;
-	}, false);
+	});
 
-	element.addEventListener('touchmove', function(event) {
+	myAddEvent(element,'touchmove', function(event) {
 		var x, y,
 			touch_event = event.touches[0]; //first touch
 
@@ -91,10 +106,12 @@ window.utils.captureTouch = function(element) {
 		touch.x = x;
 		touch.y = y;
 		touch.event = event;
-	}, false);
+	});
 
 	return touch;
 };
+
+
 
 function each(elmts,callback){
 	if(elmts.length){

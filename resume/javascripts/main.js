@@ -1,14 +1,14 @@
 window.onload=function(){
 	//console.log("ready");
 	var open=document.querySelector("#open");
-	open.addEventListener("click",function(){
+	myAddEvent(open,"click",function(){
 		//console.log("click");
 		coverOpen();
 	});
-	window.addEventListener("scroll",listenerScroll);
+	myAddEvent(window,"scroll",listenerScroll);
 	var navs=document.querySelectorAll("nav a");
 	each(navs,function(elmt){
-		elmt.addEventListener("click",listenerNavClick);
+		myAddEvent(elmt,"click",listenerNavClick);
 	});
 }
 function coverOpen(){

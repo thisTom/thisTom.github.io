@@ -21,6 +21,9 @@ body {
 	.copyRight{
 		display: none ;
 	}
+	.filmItem{
+		width: auto !important;
+	}
 }
 
 article,
@@ -38,7 +41,7 @@ section,
 summary {
 	display: block;
 }
-nav #projects>li {
+#projects>li {
 	background: url(../media/nav-BG.png) no-repeat center 5px;
 	background-size: 50%;
 	line-height: 120px;
@@ -57,7 +60,7 @@ nav #projects>li {
 	background-size: 60% !important;
 }
 
-nav #projects>li:hover {
+#projects>li:hover {
 	border: 1px dotted white;
 	background-color: #1d272e;
 }
@@ -82,7 +85,7 @@ nav #projects>li:hover {
 }
 
 #footerBar li {
-
+	overflow: hidden;
 	list-style: none;
 }
 
@@ -238,12 +241,12 @@ nav #projects>li:hover {
 	padding-top: 30px;
 	box-sizing: border-box;
 	background: hsla(0,0%,100%,.25) border-box;
-	overflow: hidden;
 	border-bottom-left-radius: .7em;
 	border-bottom-right-radius: .7em;
 	box-shadow: 0 0 0 1px hsla(0,0%,100%,.3);	            
 	transition: all .3s;
 	display: none;
+	overflow: hidden;
 }
 .minClicked{}
 .maxClicked{

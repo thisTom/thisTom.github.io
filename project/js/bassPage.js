@@ -1,14 +1,29 @@
-window.onload=function () {
 
-	document.getElementsByClassName('loading')[0].style.display='none';	
-	var tips=document.getElementsByClassName('tips')[0];
+window.onload=function () {
+    var tip=document.querySelector('.tips');
+	console.log(tip);	
+	//ie8及以下版本方案
+	var DEFAULT_VERSION = "8.0";
+	var ua = navigator.userAgent.toLowerCase();
+	var isIE = ua.indexOf("msie")>-1;
+	var safariVersion;
+	if(isIE){
+	    safariVersion =  ua.match(/msie ([\d.]+)/)[1];
+	}
+	if(safariVersion <= DEFAULT_VERSION ){
+	    tip.innerHTML='您的浏览器版本老掉牙了</br>Recommended to upgrade your browser or use Google browser';
+	}
+	
+
+	document.querySelectorAll('.loading')[0].style.display='none';	
+	var tips=document.querySelectorAll('.tips')[0];
 	tips.style.right='10px';
 	var startTime=new Date();
 	//时间日期
 	setInterval('mydate()',1000);
 	mydate=function () {
 		nowTime=new Date();
-		document.getElementsByClassName('time')[0].innerHTML=nowTime.toLocaleString();
+		document.querySelectorAll('.time')[0].innerHTML=nowTime.toLocaleString();
 		
 		if (nowTime-startTime>4000) {
 		tips.style.opacity=0;
@@ -17,7 +32,7 @@ window.onload=function () {
 	
 	var projecNavs=document.getElementById("projects");
 	
-	each(projecNavs.getElementsByTagName('iframe'),function addIframeSrc (self) {	
+	each(document.getElementsByTagName('iframe'),function addIframeSrc (self) {	
 		//console.log(self)
 		attr(self,'src',attr(self,'name'));
 	})
@@ -27,7 +42,7 @@ window.onload=function () {
 	var mouse=utils.captureMouse(body);
 	var opened=null;
 	var footer=document.getElementById('footerBar');
-	window.addEventListener('mousemove',function mousePosition () {
+	myAddEvent(window,'mousemove',function mousePosition () {
 
 		var bodyHeight= document.body.clientHeight;
 		if (mouse.y+1==bodyHeight||opened) {			
@@ -37,10 +52,10 @@ window.onload=function () {
 			footer.removeAttribute('style');
 		}
 		
-	},false);
+	});
 	
 //open showContent
-	var workingProject=Array.prototype.slice.call(document.getElementsByClassName('workingProject'));
+	var workingProject=Array.prototype.concat.apply([],document.querySelectorAll('.workingProject'));
 	var classes=['selfInfo','canvas',' ','slide'];
 	each(childs(projecNavs,false),function addEvent (self) {
 		var object = {
@@ -61,25 +76,23 @@ window.onload=function () {
 		  action: function() {
 		    window.event? window.event.cancelBubble = true : e.stopPropagation();
 			//console.log(window.event)	
-			var firstShowContent=self.getElementsByTagName('div')[0];
-			var secShowContent=self.getElementsByTagName('div')[1];
-			//console.log(secShowContent)
-			firstShowContent.removeAttribute('style');
+			var showContent=self.getElementsByTagName('div')[0];
+			showContent.removeAttribute('style');
 			opened=true;
 			if (opened) {
 				setTimeout(function () {
 					footer.removeAttribute('style');
 				},2000);
 			}
-			firstShowContent.style.display='block';
-			firstShowContent.style.zIndex=(Zindex++);
+			showContent.style.display='block';
+			showContent.style.zIndex=(Zindex++);
 			var nowClass=self.getAttribute('class');
 			var _index=classes.indexOf(nowClass);
 			workingProject[_index].style.display='block';
 			workingProject[_index].setAttribute('name',_index);
 			//弹回窗口
-			removeClass(firstShowContent,'minClicked');
-			removeClass(firstShowContent,'closeClicked');
+			removeClass(showContent,'minClicked');
+			removeClass(showContent,'closeClicked');
 		  }
 		};
 		
@@ -88,14 +101,15 @@ window.onload=function () {
 	})
 	
 	
-	var filmItem=document.getElementsByClassName('filmItem');
+	var filmItem=document.querySelectorAll('.filmItem');
 	each(filmItem,function (eachFilmItem) {
 		var itemLi=eachFilmItem.getElementsByTagName('li');
 		//console.log(itemLi)
 		each(itemLi,function addEvent (self) {
 			var frameSrc=self.getAttribute('name');
+			myAddEvent(self,'click',function changeLocation () {
 			var showContent=self.parentNode.parentNode.parentNode.getElementsByTagName('div')[1];
-			self.addEventListener('click',function changeLocation () {
+			//console.log(showContent);
 				showContent.getElementsByTagName('iframe')[0].setAttribute('src',frameSrc);
 				setTimeout(function () {
 					removeClass(showContent,'minClicked');
@@ -118,23 +132,23 @@ window.onload=function () {
 	
 //showContent event start
 	//minimize
-	var minimize=document.getElementsByClassName('min');
+	var minimize=document.querySelectorAll('.min');
 	each(minimize,function addEvent1 (self) {
-		self.addEventListener('click',function minClicked () {
+		myAddEvent(self,'click',function minClicked () {
 		window.event? window.event.cancelBubble = true : e.stopPropagation();
 		//console.log(window.event)
 		var showContent=this.parentNode.parentNode;					
 		addClass(showContent,'minClicked');	
 		
-	},false)
+	})
 	})
 	
 	//minimize to default
 	
 	each(workingProject,function addEvent2 (self) {
-		self.addEventListener('mouseover',function showSmallContent () {
+		myAddEvent(self,'mouseover',function showSmallContent () {
 			//console.log(self.getAttribute('name'))
-			var smallContent=document.getElementsByClassName('show')[self.getAttribute('name')];
+			var smallContent=document.querySelectorAll('.show')[self.getAttribute('name')];
 			//console.log(smallContent)
 			if (hasClass(smallContent,'minClicked')) {
 				smallContent.style.opacity=1;
@@ -142,19 +156,19 @@ window.onload=function () {
 				smallContent.style.zIndex=(Zindex++);
 			}
 
-		},false)
+		})
 		
-		self.addEventListener('mouseout',function hideSmallContent () {
+		myAddEvent(self,'mouseout',function hideSmallContent () {
 			//console.log(self.getAttribute('name'))
-			var smallContent=document.getElementsByClassName('show')[self.getAttribute('name')];
+			var smallContent=document.querySelectorAll('.show')[self.getAttribute('name')];
 			if (hasClass(smallContent,'minClicked')) {
 				smallContent.style.opacity=0;
 			}
-		},false)
+		})
 		
 		// change to default
-		self.addEventListener('click',function toDefault () {
-			var smallContent=document.getElementsByClassName('show')[self.getAttribute('name')];
+		myAddEvent(self,'click',function toDefault () {
+			var smallContent=document.querySelectorAll('.show')[self.getAttribute('name')];
 			//console.log(smallContent);
 			smallContent.removeAttribute('style');
 			removeClass(smallContent,'minClicked')
@@ -166,31 +180,31 @@ window.onload=function () {
 	//console.log(projecNavs.getElementsByTagName('div'))
 	each(projecNavs.getElementsByTagName('div'),function addEvent3 (self) {
 		//console.log(self);
-		self.addEventListener('mouseover',function holdSmallContent () {
+		myAddEvent(self,'mouseover',function holdSmallContent () {
 			if (hasClass(self,'minClicked')) {
 				//console.log(self);
 				self.style.display='block';
 				self.style.opacity=1;
 				footer.style.bottom=0;
 			}
-		},false)
-		self.addEventListener('mouseout',function notHoldSmallContent () {
+		})
+		myAddEvent(self,'mouseout',function notHoldSmallContent () {
 			if (hasClass(self,'minClicked')) {
 				self.style.opacity=0;
 				self.style.display='none';	
 			}
-		},false);
+		});
 		//console.log(childs(self,false,1))
-		self.addEventListener('click',function alsoToDefault () {
+		myAddEvent(self,'click',function alsoToDefault () {
 			//console.log(iframe不能使用鼠标事件  暂时放下)
 		})
 		
 	});
 	
 	//close showContent
-	var close=document.getElementsByClassName('close');
+	var close=document.querySelectorAll('.close');
 	each(close,function addEvent4 (self) {
-		self.addEventListener('click',function closeShowContent () {
+		myAddEvent(self,'click',function closeShowContent () {
 			window.event? window.event.cancelBubble = true : e.stopPropagation();
 			//console.log(window.event)
 			var thisShowContent=self.parentNode.parentNode;
@@ -200,17 +214,15 @@ window.onload=function () {
 			//alert(thisIndex)
 			workingProject[thisIndex].style.display='none';
 			//刷新iframe
-			if (thisIndex<3) {
 				parent.frames[thisIndex].location.reload();
-			}
 			//console.log(typeof(window.parent.frames[thisIndex].document));
 		})
 	})
 	
 	//full screen
-	var max=document.getElementsByClassName('max');
+	var max=document.querySelectorAll('.max');
 	each(max,function addEvent5 (self) {
-		self.addEventListener('click',function fullScreen () {
+		myAddEvent(self,'click',function fullScreen () {
 			window.event? window.event.cancelBubble = true : e.stopPropagation();
 			//console.log(window.event)
 			var showContent=self.parentNode.parentNode;

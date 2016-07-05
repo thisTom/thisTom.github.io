@@ -8,10 +8,20 @@
 		<link rel="stylesheet" type="text/css" href="stylesheet/bassPage.css"/>
 		<script src="js/bassPage.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!--[if lte IE 8]>
+			<style>
+				body{
+					background: url(./media/bassPage-BG.jpg);
+				}
+				#projects{
+					display: none;
+				}
+			</style>
+		<![endif]-->	
 	</head>
 	<body onselectstart="return false">
 		<!--nav start-->
-		<nav>
 			<ul id="projects">
 				<li class="selfInfo">个人简历
 					<div id="showContent0" class="show">
@@ -71,7 +81,6 @@
 				<li class="">***</li>
 				<li class="">***</li>
 			</ul>
-		</nav>
 		
 		<!--footer start-->
 		<ul id="footerBar">
@@ -91,13 +100,13 @@
 			<li class="copyRight">copyRight 2016-2017, design and developed by <span>thisTom</span></li>
 
 		</ul>
-		
-		
-		<!--载入动画-->
-		<div class="loading">loading SOMETHINGS</div>
 		<!--tip框-->
 		<div class="tips">
 			按F11全屏浏览更佳<br />(Press F11 to fullscreen) 
-		</div>
+		</div>		
+		
+		<!--载入动画-->
+		<div class="loading">loading SOMETHINGS</div>
+
 	</body>
 </html>
