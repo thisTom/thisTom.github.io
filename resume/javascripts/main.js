@@ -100,7 +100,7 @@ function scrollToTarget(elmt,duration,deley){
 		ty=target.offsetTop,
 		px=window.pageXOffset,
 		py=window.pageYOffset;
-	//console.log("t:"+tx+" "+ty);
+	console.log("t:"+tx+" "+ty);
 	//console.log("p:"+px+" "+py);
 	//console.log(duration+" "+deley);
 	var up=false,
