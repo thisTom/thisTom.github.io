@@ -4,19 +4,23 @@
 }
 
 body {
-	background: black url(../media/bassPage-BG.jpg) no-repeat right top / cover fixed;
+	background: black url(../media/bassPage-BG.jpg) no-repeat right top / 40% 100% fixed;
 	overflow: hidden;
 	font-family: "微软雅黑";
 	font-size: 16px; /*1em*/
 	height: 100%;
+	transition: all 1s;
 }
 
 @media only screen and (max-width: 1100px) {
+	body{
+		background-size: cover !important;
+	}
 	#footerBar{
 		bottom: 0 !important;
 	}
 	.search input:focus{
-		width: 50vw !important;
+		width: 60vw !important;
 	}
 	.copyRight{
 		display: none ;
@@ -105,12 +109,11 @@ summary {
 }
 .search{
 	float: left;
-	width: 18%;
 	margin-left: 1%;
 }
 .search input {
 	transition: all .5s;
-	width: 100%;
+	width: 17vw;
 	margin-top: 2px;
 	height: 26px;
 	border: none;
@@ -223,7 +226,7 @@ summary {
 	transition-delay: 2s;
 }
 #showContent0::before, #showContent1::before, #showContent2::before, #showContent3::before, #showContent4::before{
-	background: black url(../media/bassPage-BG.jpg) no-repeat right top / cover fixed;
+	background: black url(../media/bassPage-BG.jpg) no-repeat right top / 100% fixed;
 	content: '';
 	position: absolute;
 	top: 0; right: 0; bottom: 0; left: 0;
@@ -257,36 +260,36 @@ summary {
 	display: none !important;
 }
 #showContent0.minClicked{
-	top: 73%;
+	top: 72%;
 	left: -50%;
 	transform: scale(.2);
 	z-index: -1;
 	opacity: 0;
 }
 #showContent1.minClicked{
-	top: 73%;
+	top: 72%;
 	left: -45%;
 	transform: scale(.2);
 	z-index: -1;
 	opacity: 0;
 }
 #showContent2.minClicked{
-	top: 73%;
-	left: -40%;
+	top: 72%;
+	left: -42%;
 	transform: scale(.2);
 	z-index: -1;
 	opacity: 0;
 }
 #showContent3.minClicked{
-	top: 73%;
-	left: -32%;
+	top: 72%;
+	left: -40%;
 	transform: scale(.2);
 	z-index: -1;
 	opacity: 0;
 }
 #showContent4.minClicked{
-	top: 73%;
-	left: -28%;
+	top: 72%;
+	left: -38%;
 	transform: scale(.2);
 	z-index: -1;
 	opacity: 0;

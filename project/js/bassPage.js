@@ -14,7 +14,8 @@ window.onload=function () {
 	    tip.innerHTML='您的浏览器版本老掉牙了</br>Recommended to upgrade your browser or use Google browser';
 	}
 	
-
+	var bodyElement=document.querySelector('body');
+	bodyElement.style.backgroundSize='100% 100%';
 	document.querySelectorAll('.loading')[0].style.display='none';	
 	var tips=document.querySelectorAll('.tips')[0];
 	tips.style.right='10px';
@@ -27,6 +28,7 @@ window.onload=function () {
 		
 		if (nowTime-startTime>4000) {
 		tips.style.opacity=0;
+
 	};
 	};
 	
@@ -108,6 +110,7 @@ window.onload=function () {
 		each(itemLi,function addEvent (self) {
 			var frameSrc=self.getAttribute('name');
 			myAddEvent(self,'click',function changeLocation () {
+		    window.event? window.event.cancelBubble = true : e.stopPropagation();
 			var showContent=self.parentNode.parentNode.parentNode.getElementsByTagName('div')[1];
 			//console.log(showContent);
 				showContent.getElementsByTagName('iframe')[0].setAttribute('src',frameSrc);
@@ -116,8 +119,9 @@ window.onload=function () {
 					removeClass(showContent,'closeClicked');
 					showContent.style.display='block';
 					showContent.style.opacity=1;
-					showContent.style.zIndex=(Zindex++);				
-				},500)
+					showContent.style.zIndex=(Zindex++);
+				},100)
+				
 			var nowClass=showContent.parentNode.getAttribute('class');
 			//console.log(nowClass)
 			var _index=classes.indexOf(nowClass)+1;
@@ -137,7 +141,8 @@ window.onload=function () {
 		myAddEvent(self,'click',function minClicked () {
 		window.event? window.event.cancelBubble = true : e.stopPropagation();
 		//console.log(window.event)
-		var showContent=this.parentNode.parentNode;					
+		var showContent=this.parentNode.parentNode;		
+		removeClass(showContent,'maxClicked');
 		addClass(showContent,'minClicked');	
 		
 	})
@@ -196,6 +201,9 @@ window.onload=function () {
 		});
 		//console.log(childs(self,false,1))
 		myAddEvent(self,'click',function alsoToDefault () {
+			self.removeAttribute('style');
+			removeClass(self,'minClicked');
+			self.style.display='block';
 			//console.log(iframe不能使用鼠标事件  暂时放下)
 		})
 		
@@ -208,13 +216,15 @@ window.onload=function () {
 			window.event? window.event.cancelBubble = true : e.stopPropagation();
 			//console.log(window.event)
 			var thisShowContent=self.parentNode.parentNode;
-			addClass(thisShowContent,'closeClicked')
+			addClass(thisShowContent,'closeClicked');
 			var id=thisShowContent.getAttribute('id')
 			var thisIndex=id.slice(-1);
 			//alert(thisIndex)
 			workingProject[thisIndex].style.display='none';
 			//刷新iframe
+			if (thisIndex<=2) {
 				parent.frames[thisIndex].location.reload();
+			}
 			//console.log(typeof(window.parent.frames[thisIndex].document));
 		})
 	})
@@ -226,6 +236,7 @@ window.onload=function () {
 			window.event? window.event.cancelBubble = true : e.stopPropagation();
 			//console.log(window.event)
 			var showContent=self.parentNode.parentNode;
+			showContent.style.zIndex=(Zindex++);
 			if (hasClass(showContent,'maxClicked')) {
 				removeClass(showContent,'maxClicked')
 			}else{
