@@ -250,6 +250,24 @@ window.onload=function () {
 		})
 	})
 	
+	//start menu 
+	var startBtn=document.querySelector('.start');
+	var startMenu=document.querySelector('#startMenu');
+	var rightMenu=document.querySelector('#menu-right');
+	myAddEvent(startBtn,'click', function showOrHideMenu () {
+		if (startMenu.style.opacity==0) {
+			startMenu.style.opacity=1;
+			startMenu.style.bottom='30px';
+			startMenu.style.zIndex=1;
+			rightMenu.style.top='15px';
+		}else{
+			startMenu.removeAttribute('style');
+			rightMenu.removeAttribute('style');
+		}
+
+	});
+
+	
 	
 	
 
