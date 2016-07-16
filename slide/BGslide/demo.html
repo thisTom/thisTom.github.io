@@ -5,6 +5,11 @@
 		<title>背景轮播</title>
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<style type="text/css">
+			@media only screen and (max-width: 500px) {
+				body{
+					transform: scale(.25);
+					margin-left: -35%;
+				}
 			*{margin: 0px;padding: 0px;}
 			#con{
 				width: 1017px;
@@ -98,8 +103,8 @@
 				if (_index==2) {
 					_index=0	
 				}
-				$('.wrap img').eq(_index).fadeIn(2000).siblings().fadeOut(2000);
-			},4000);
+				$('.wrap img').eq(_index).fadeIn(1000).siblings().fadeOut(1000);
+			},2000);
 			
 		})
 	</script>

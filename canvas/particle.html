@@ -4,24 +4,19 @@
 		<meta charset="utf-8">
 		<title>原子碰撞效果</title>
 		<style type="text/css">
-			*{
-				margin: 0;padding: 0;
-			}
-			body{
-				background-color:#222;
-			}
-			#mycanvas{
-				border:3px solid blueviolet;
+
+			canvas{
+				border:3px solid hsl(0,50%,50%);
 				box-shadow:0px 0px 250px #4162a9 inset;
 				position: absolute;
-				margin: auto;
+				margin:auto;
 				left: 0;right: 0;top: 0;bottom: 0;
-				
-			}
+				box-sizing: border-box;	
+			}			
 		</style>
 	</head>
 	<body>
-		<canvas id="mycanvas" width="400" height="400">
+		<canvas id="mycanvas" width="300" height="300">
 			您的浏览器版本太低，请升级到最新版本
 		</canvas>
 		<script type="text/javascript">
@@ -40,11 +35,11 @@
 			var c=document.getElementById("mycanvas");
 			var cxt=c.getContext('2d');
 			var particles=[];//存放Factory多个执行的数据
-			var particlesNum=50;//产生的原子数50
-			w=400;h=400;
+			var particlesNum=30;//产生的原子数50
+			var w=c.offsetWidth;
+			var h=c.offsetHeight;
+			console.log(w,h);
 			colors=['#ffff00','#99ff00','#cc66ff','#ff0000'];
-			c.width=w;
-			c.height=h;
 			a=(window.innerWidth-w)/2+'px';
 			b=(window.innerHeight-h)/2+'px';
 			
