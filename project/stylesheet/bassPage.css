@@ -95,6 +95,7 @@ summary {
 
 #footerBar li:hover {
 	background-color: #252525;
+	cursor: pointer;
 }
 
 .start {
