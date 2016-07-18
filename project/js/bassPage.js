@@ -66,14 +66,14 @@ window.onload=function () {
 		var object = {
 		  init: function() {
 		    self.addEventListener("dblclick", this, false);
-		    self.addEventListener("touchstart", this, false);
+		    self.addEventListener("click", this, false);
 		  },
 		  handleEvent: function(e) {
 		    switch(e.type) {
 		      case "dblclick":
 		        this.action();
 		        break;
-		      case "touchstart":
+		      case "click":
 		        this.action();
 		        break;
 		    }
