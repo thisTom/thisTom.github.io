@@ -28,7 +28,13 @@
 		left: 5% !important;
 	}
 }
-
+@media only screen and (max-width: 640px) {
+	.cols,.rows{
+		-webkit-transform: scale(.8);
+		transform: scale(.8);
+	}
+	
+}
 *{
 	padding: 0;margin: 0;
 }
@@ -310,7 +316,7 @@ body.open #home{
 
 body.open #home #info1{
 	opacity: 1;
-	right: 25%;
+	right: 20%;
 }
 body.open #home #info2{
 	opacity: 1;	

@@ -1,6 +1,9 @@
-
 window.onload=function () {
     var tip=document.querySelector('.tips');
+    //移动端Tip提示内容
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		tip.innerHTML='很高兴你能在移动端体验 </br> I am optimizing it';
+	}
 	//console.log(tip);	
 	//ie8及以下版本方案
 	var DEFAULT_VERSION = "8.0";
@@ -12,7 +15,7 @@ window.onload=function () {
 	}
 	if(safariVersion <= DEFAULT_VERSION ){
 	    tip.innerHTML='您的浏览器版本老掉牙了</br>Recommended to upgrade your browser or use Google browser';
-	}
+	}	
 	var notice=document.querySelector('#notice');
 	setTimeout(function noticePlay () {
 		notice.play();
