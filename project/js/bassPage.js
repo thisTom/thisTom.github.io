@@ -30,7 +30,7 @@ window.onload=function () {
 	setInterval('mydate()',1000);
 	mydate=function () {
 		nowTime=new Date();
-		document.querySelectorAll('.time')[0].innerHTML=nowTime.toLocaleString();
+		document.querySelectorAll('.time')[0].innerHTML=nowTime.toLocaleDateString()+'&emsp;'+nowTime.toLocaleTimeString();
 		
 		if (nowTime-startTime>4000) {
 		tips.style.opacity=0;
