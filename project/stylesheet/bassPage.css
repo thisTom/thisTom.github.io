@@ -99,6 +99,7 @@ summary {
 	cursor: pointer;
 }
 
+
 .start {
 	float: left;
 	background: url(../media/footerIcon.jpg) no-repeat left top;
@@ -109,17 +110,19 @@ summary {
 .start:hover {
 	background-position: -35px top;
 }
-
+.menuOpen{
+	bottom: 0px !important;
+}
 #startMenu{
 	width: 43%;
-	height: 80%;
+	height: 65%;
 	box-sizing: border-box;
 	position: absolute;
 	left: 0;
-	bottom: 0px;
+	bottom: 30px;
 	padding: 15px;
 	background: rgba(0,0,0,.9);
-	border: solid 1px hsl(0,0%,20%);
+	border: solid 1px hsl(0,0%,15%);
 	overflow: hidden;
 	border-left: none;
 	border-bottom: none;
@@ -146,6 +149,13 @@ summary {
 	left: 15px;
 	top: 15px;
 	overflow: hidden;
+	background-color: gainsboro;
+}
+.yunyinyue{
+	
+}
+.tianqiyubao{
+	position: relative;
 }
 #menu-right{
 	width: 55%;

@@ -1,3 +1,4 @@
+
 window.onload=function () {
     var tip=document.querySelector('.tips');
     //移动端Tip提示内容
@@ -254,24 +255,36 @@ window.onload=function () {
 	})
 	
 	//start menu 
+	//menuOpen and animation
 	var startBtn=document.querySelector('.start');
 	var startMenu=document.querySelector('#startMenu');
 	var rightMenu=document.querySelector('#menu-right');
 	myAddEvent(startBtn,'click', function showOrHideMenu () {
+		window.event? window.event.cancelBubble = true : e.stopPropagation();
 		if (startMenu.style.opacity==0) {
 			startMenu.style.opacity=1;
-			startMenu.style.bottom='30px';
+			startMenu.style.height='80%';
 			startMenu.style.zIndex=1;
-			rightMenu.style.top='15px';
+			addClass(footer,'menuOpen')
+			rightMenu.style.top='15px';			
 		}else{
 			startMenu.removeAttribute('style');
 			rightMenu.removeAttribute('style');
+			removeClass(footer,'menuOpen');
 		}
-
 	});
-
+	myAddEvent(document,'click',function () {
+		startMenu.removeAttribute('style');
+		rightMenu.removeAttribute('style');
+		removeClass(footer,'menuOpen');
+	})
 	
 	
 	
 
+
+
+
+	
+	
 }//end
