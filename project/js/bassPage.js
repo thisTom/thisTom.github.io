@@ -281,7 +281,18 @@ window.onload=function () {
 	
 	
 	
-
+	//menu-right style
+	
+	myAddEvent(window,'resize',changeHeight);
+	function changeHeight () {
+		var menuRightLi=rightMenu.querySelectorAll('li');
+		each(menuRightLi,function changeHeight (self) {
+			var selfH=self.offsetWidth;
+			//console.log(selfH);
+			self.style.height=(selfH+'px');			
+		});
+	};
+	changeHeight();
 
 
 

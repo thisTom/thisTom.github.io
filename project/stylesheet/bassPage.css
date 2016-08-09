@@ -11,8 +11,11 @@ body {
 	height: 100%;
 	transition: all .8s;
 }
+a{
+	text-decoration: none;
+}
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 768px) {
 	body{
 		background-size: cover !important;
 	}
@@ -27,6 +30,12 @@ body {
 	}
 	.filmItem{
 		width: auto !important;
+	}
+	#menu-left,#menu-right{
+		width: 90% !important;
+	}
+	#menu-right{
+		display: none;
 	}
 }
 
@@ -143,23 +152,43 @@ summary {
 	z-index: -1;	
 }
 #menu-left{
-	width: 38%;
-	height: 100%;
+	width: 33%;
+	height: 98%;
 	position: absolute;
 	left: 15px;
 	top: 15px;
 	overflow: hidden;
-	background-color: gainsboro;
 }
-.yunyinyue{
-	
+#menu-left li{
+	font-size: 12px;
+	color: white;
+	list-style: none;
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
 }
-.tianqiyubao{
-	position: relative;
+#menu-left li:hover{
+	background:hsla(0,0%,20%,.8);
+	cursor: pointer;
 }
+#menu-left p{
+	font-size: 12px;
+	color: gainsboro;
+}
+.github-login{
+}
+#menu-left li img{
+	border-radius: 5px;
+	float: left;
+	margin-right: 5px;
+	width: 30px;
+	height: 30px;
+	margin: 2px;
+}
+
 #menu-right{
-	width: 55%;
-	height: 100%;
+	width: 58%;
+	height: 98%;
 	position: absolute;
 	right: 15px;
 	top: 50px;
@@ -169,7 +198,40 @@ summary {
 	transition-delay: .1s;
 	transition-timing-function: ease-out;
 }
-
+#menu-right li{
+	box-sizing: border-box;
+	list-style: none;
+	float: left;
+	background-position: center;
+	font-size: 12px;
+	color: white;
+	margin: 0.5%;
+	border: solid 2px transparent;
+	position: relative;
+}
+#menu-right li:hover{
+	border: solid 2px hsl(0,0%,80%);
+}
+#menu-right li span{
+	position: absolute;
+	padding: 2px;
+	bottom: 0;
+}
+.W1_3{
+	width: 32%;
+}
+.W2_3{
+	width: 65%;
+}
+.weather{
+	background: url(../media/weather.png) no-repeat #0063b1;
+}
+.yunyinyue{
+	background: url(../media/yunyinyue.png) no-repeat #ffb900;
+}
+.photo{
+	background: url(../media/photo.png) no-repeat #ff4343;
+}
 
 
 .search{

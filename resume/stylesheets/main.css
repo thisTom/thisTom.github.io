@@ -339,7 +339,7 @@ body.open #home #info3{
 #info1{
 	top: 10%;
 	right: 10%;
-	text-align: right;
+	text-align: left;
 }
 #info2{
 	top: 58%;
@@ -349,8 +349,9 @@ body.open #home #info3{
 	font-weight: 600;
 }
 #info3{
+	text-align: right;
 	bottom: 20%;
-	left: 10%;
+	left: 8%;
 }
 #myPhoto{
 	top: 0;left: 0;right: 0;bottom: 20%;
