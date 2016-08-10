@@ -37,6 +37,9 @@ a{
 	#menu-right{
 		display: none;
 	}
+	.weather{
+		
+	}
 }
 
 article,
@@ -225,6 +228,48 @@ summary {
 }
 .weather{
 	background: url(../media/weather.png) no-repeat #0063b1;
+	overflow: hidden;
+}
+.weatherActive{
+	background: linear-gradient(#7c888f,#8d979c) !important;
+}
+.weatherActive p{
+	color: white;
+	text-align: center;
+}
+.weatherActive .city{
+	text-align: left;
+	font-size: 1.16666em;
+	width: 100%;
+	padding: 5px;
+}
+.weatherActive .update{
+	text-align: left;
+	font-size: 1em;
+	color: hsla(0,0%,100%,.6);
+	padding-left: 5px;
+}
+.weatherName{
+	font-size: 1.16666em;
+}
+.template{
+	font-size: 3em;
+}
+.weatherActive .wind{
+	text-align: right;
+	font-size: 1em;
+	padding-right: 5px;
+	margin-top: 5px;
+}
+.weatherActive .windPower{
+	font-size: 1.5em;
+	text-align: right;
+	padding-right: 10px;
+}
+.weatherPNG{
+	background-size: cover;
+	height: 4.6666em;
+	background: no-repeat center;
 }
 .yunyinyue{
 	background: url(../media/yunyinyue.png) no-repeat #ffb900;

@@ -1,9 +1,9 @@
 
 window.onload=function () {
-    var tip=document.querySelector('.tips');
+   	var tips=document.querySelectorAll('.tips')[0];
     //移动端Tip提示内容
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		tip.innerHTML='很高兴你能在移动端体验 </br> I am optimizing it';
+		tips.innerHTML='很高兴你能在移动端体验 </br> I am optimizing it';
 	}
 	//console.log(tip);	
 	//ie8及以下版本方案
@@ -15,7 +15,7 @@ window.onload=function () {
 	    safariVersion =  ua.match(/msie ([\d.]+)/)[1];
 	}
 	if(safariVersion <= DEFAULT_VERSION ){
-	    tip.innerHTML='您的浏览器版本老掉牙了</br>Recommended to upgrade your browser or use Google browser';
+	    tips.innerHTML='您的浏览器版本老掉牙了</br>Recommended to upgrade your browser or use Google browser';
 	}	
 	var notice=document.querySelector('#notice');
 	setTimeout(function noticePlay () {
@@ -24,7 +24,6 @@ window.onload=function () {
 	var bodyElement=document.querySelector('body');
 	bodyElement.style.backgroundSize='100% 100%';
 	document.querySelectorAll('.loading')[0].style.display='none';	
-	var tips=document.querySelectorAll('.tips')[0];
 	tips.style.right='10px';
 	var startTime=new Date();
 	//时间日期
@@ -38,6 +37,89 @@ window.onload=function () {
 
 	};
 	};
+	
+	//实时天气 
+		var weatherBox=document.querySelector('.weather');
+	    var url = 'http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=0&charset=utf-8';
+	    var script = document.createElement('script');	    
+	    script.onerror = script.onload = script.onreadystatechange = function(e){
+	       e = e || window.event;
+	       //console.log(e);
+	       if(!script.readyState || (/loaded|complete/.test(script.readyState)) || e.type === "error"){
+	          script = script.onerror = script.onload = script.onreadystatechange = null;
+	          var data = window.SWther || {};
+	          //console.log(data)
+	          var weatherData={
+	            time : data.add.update.slice(-7),
+	            city : Object.getOwnPropertyNames(data.w)[1],
+	            weather : data.w[Object.getOwnPropertyNames(data.w)[1]][0]
+	          };
+	          //console.log(data.w)
+	          console.log(weatherData);
+	          //console.log(weatherBox.childNodes)
+	          addClass(weatherBox,'weatherActive');
+	          var weatherCh=weatherBox.childNodes;
+	          weatherCh[1].innerHTML=weatherData.city;
+	          weatherCh[2].innerHTML=weatherData.time;
+	          weatherCh[4].innerHTML=weatherData.weather.t1+'℃';
+	          weatherCh[5].innerHTML=weatherData.weather.s1;
+	          weatherCh[6].innerHTML=weatherData.weather.d1;
+	          weatherCh[7].innerHTML=weatherData.weather.p1+'级';
+	          var imgName;
+	          switch (weatherData.weather.s1){
+	          	case '晴':
+	          		imgName='qing';
+	          		break;
+	          	case '多云':
+	          		imgName='duoyun';
+	          		break;
+	          	case '阵雨':
+	          	case '雷阵雨':
+	          	case '小雨':
+	          	case '中雨':
+	          	case '大雨':	          	
+	          		imgName='zhenyu';
+	          		break;
+	          	case '晴渐多云':
+	          	case '晴转多云':
+	          	case '多云转晴':
+	          		imgName='qingyun';
+	          		break;
+	          	case '暴雨':
+	          	case '大暴雨':
+	          	case '特大暴雨':	          	
+	          		imgName='baoyu';
+	          		break;
+	          	case '雨夹雪':
+	          		imgName='yujiaxue';
+	          		break;
+	          	case '小雪':
+	          	case '阵雪':
+	          		imgName='xue';
+	          		break;
+	          	case '中雪':
+	          	case '大雪':
+	          	case '暴雪':
+	          		imgName='daxue';
+	          		break;
+	          	default:
+	          		imgName='buzhidao'
+	          		break;
+	          }
+	          weatherCh[3].style.backgroundImage='url(media/'+imgName+'.png)';
+	          
+	          
+	       }
+	    }
+	    script.src = url;
+	    document.body.appendChild(script);
+	
+	
+	
+	
+	
+	
+	
 	
 	var projecNavs=document.getElementById("projects");
 	
@@ -272,6 +354,11 @@ window.onload=function () {
 			rightMenu.removeAttribute('style');
 			removeClass(footer,'menuOpen');
 		}
+		
+		
+		
+		
+		
 	});
 	myAddEvent(document,'click',function () {
 		startMenu.removeAttribute('style');
@@ -296,6 +383,10 @@ window.onload=function () {
 
 
 
-	
+
+		
+		
+		
+		
 	
 }//end
