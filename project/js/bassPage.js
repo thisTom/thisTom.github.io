@@ -1,9 +1,21 @@
 
 window.onload=function () {
+	var bodyElement=document.querySelector('body');
    	var tips=document.querySelectorAll('.tips')[0];
-    //移动端Tip提示内容
+    //移动端Tip提示内容 and 天气更新位置
+    var weatherBox=document.querySelector('.weather');
+    var weatherLeftBtn=document.querySelector('.tianqiyubao');
+    var weatherClose=document.querySelector('.closeWeather');
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		
 		tips.innerHTML='很高兴你能在移动端体验 </br> I am optimizing it';
+		bodyElement.appendChild(weatherBox);
+		myAddEvent(weatherLeftBtn,'click',function () {
+			weatherBox.style.display='block';		
+		})
+		myAddEvent(weatherClose,'click',function () {
+			weatherBox.removeAttribute('style');
+		})
 	}
 	//console.log(tip);	
 	//ie8及以下版本方案
@@ -21,7 +33,7 @@ window.onload=function () {
 	setTimeout(function noticePlay () {
 		notice.play();
 	},2000);
-	var bodyElement=document.querySelector('body');
+	
 	bodyElement.style.backgroundSize='100% 100%';
 	document.querySelectorAll('.loading')[0].style.display='none';	
 	tips.style.right='10px';
@@ -39,7 +51,6 @@ window.onload=function () {
 	};
 	
 	//实时天气 
-		var weatherBox=document.querySelector('.weather');
 	    var url = 'http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=0&charset=utf-8';
 	    var script = document.createElement('script');	    
 	    script.onerror = script.onload = script.onreadystatechange = function(e){
@@ -69,6 +80,7 @@ window.onload=function () {
 	          switch (weatherData.weather.s1){
 	          	case '晴':
 	          		imgName='qing';
+	          		
 	          		break;
 	          	case '多云':
 	          		imgName='duoyun';
@@ -113,11 +125,6 @@ window.onload=function () {
 	    }
 	    script.src = url;
 	    document.body.appendChild(script);
-	
-	
-	
-	
-	
 	
 	
 	

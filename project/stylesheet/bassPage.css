@@ -14,8 +14,11 @@ body {
 a{
 	text-decoration: none;
 }
+li{
+	list-style: none;
+}
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 769px) {
 	body{
 		background-size: cover !important;
 	}
@@ -38,7 +41,30 @@ a{
 		display: none;
 	}
 	.weather{
-		
+		display: none;
+		width: 80% !important;
+		position: absolute;
+		top: 20%;
+		left: 10%;
+	}
+	.weather span{
+		display: none;
+	}
+	.closeWeather{
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 30px;
+		height: 30px;
+		font-weight: bold;
+		font-size: 1.25em;
+		list-style: none;
+		text-align: center;
+		color: white;
+		cursor: pointer;
+		background: none;
+		border: none;	
+		display: block !important;	
 	}
 }
 
@@ -236,6 +262,9 @@ summary {
 .weatherActive p{
 	color: white;
 	text-align: center;
+}
+.closeWeather{
+	display: none;
 }
 .weatherActive .city{
 	text-align: left;
