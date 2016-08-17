@@ -357,7 +357,7 @@ window.onload=function () {
 		if (startMenu.style.opacity==0) {
 			startMenu.style.opacity=1;
 			startMenu.style.height='80%';
-			startMenu.style.zIndex=1;
+			startMenu.style.zIndex=999;
 			addClass(footer,'menuOpen')
 			rightMenu.style.top='15px';			
 		}else{
