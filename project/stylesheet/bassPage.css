@@ -83,6 +83,10 @@ section,
 summary {
 	display: block;
 }
+#projects{
+	width: 100%;
+	height: 100vh;
+}
 #projects>li {
 	background: url(../media/nav-BG.png) no-repeat center 5px;
 	background-size: 50%;
@@ -92,7 +96,7 @@ summary {
 	color: white;
 	text-align: center;
 	width: 70px;
-	height: 70px;
+	height: 80px;
 	margin: 5px 0 20px 0;
 	border: 1px solid transparent;
 	cursor: default;
@@ -334,6 +338,9 @@ summary {
 .workingProject:hover{
 	background-position: left bottom;
 }
+.appImg{
+	background-image: url(../media/startAppIco.jpg) !important;
+}
 
 .copyRight {
 	line-height: 30px;
@@ -426,7 +433,7 @@ summary {
 	opacity: 1;
 	transition-delay: 2s;
 }
-#showContent0::before, #showContent1::before, #showContent2::before, #showContent3::before, #showContent4::before{
+#showContent0::before, #showContent1::before, #showContent2::before, #showContent3::before, #showContent4::before,#showContent5::before{
 	background: black url(../media/bassPage-BG.jpg) no-repeat right top / 100% fixed;
 	content: '';
 	position: absolute;
@@ -436,7 +443,7 @@ summary {
 	-webkit-filter: blur(20px);
 	filter: blur(20px);
 }
-#showContent0,#showContent1,#showContent2,#showContent3,#showContent4{
+#showContent0,#showContent1,#showContent2,#showContent3,#showContent4,#showContent5{
 	position: absolute;
 	left: 0;right: 0;top: 0;bottom: 0;
 	margin: auto;
@@ -476,21 +483,28 @@ summary {
 }
 #showContent2.minClicked{
 	top: 72%;
-	left: -42%;
+	left: -43%;
 	transform: scale(.2);
 	z-index: -1;
 	opacity: 0;
 }
 #showContent3.minClicked{
 	top: 72%;
-	left: -40%;
+	left: -42%;
 	transform: scale(.2);
 	z-index: -1;
 	opacity: 0;
 }
 #showContent4.minClicked{
 	top: 72%;
-	left: -38%;
+	left: -40%;
+	transform: scale(.2);
+	z-index: -1;
+	opacity: 0;
+}
+#showContent5.minClicked{
+	top: 72%;
+	left: -45%;
 	transform: scale(.2);
 	z-index: -1;
 	opacity: 0;

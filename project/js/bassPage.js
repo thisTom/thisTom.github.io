@@ -129,11 +129,13 @@ window.onload=function () {
 	
 	
 	var projecNavs=document.getElementById("projects");
+	setTimeout(function() {
+		each(document.getElementsByTagName('iframe'),function addIframeSrc (self) {	
+			//console.log(self)
+			attr(self,'src',attr(self,'name'));
+		})
+	},1000)
 	
-	each(document.getElementsByTagName('iframe'),function addIframeSrc (self) {	
-		//console.log(self)
-		attr(self,'src',attr(self,'name'));
-	})
 	
 	var Zindex=0; //smallShowContent   zIndex
 	var body=document.getElementsByTagName('body')[0];
@@ -154,7 +156,7 @@ window.onload=function () {
 	
 //open showContent
 	var workingProject=Array.prototype.concat.apply([],document.querySelectorAll('.workingProject'));
-	var classes=['selfInfo','canvas',' ','slide'];
+	var classes=['selfInfo','canvas',' ','slide',' ','StartApp'];
 	each(childs(projecNavs,false),function addEvent (self) {
 		var object = {
 		  init: function() {
@@ -186,6 +188,7 @@ window.onload=function () {
 			showContent.style.zIndex=(Zindex++);
 			var nowClass=self.getAttribute('class');
 			var _index=classes.indexOf(nowClass);
+			console.log(_index);
 			workingProject[_index].style.display='block';
 			workingProject[_index].setAttribute('name',_index);
 			//弹回窗口
@@ -318,6 +321,7 @@ window.onload=function () {
 			//alert(thisIndex)
 			workingProject[thisIndex].style.display='none';
 			//刷新iframe
+			//console.log(thisIndex)
 			if (thisIndex<=2) {
 				parent.frames[thisIndex].location.reload();
 			}
@@ -391,7 +395,6 @@ window.onload=function () {
 
 
 
-		
 		
 		
 		
