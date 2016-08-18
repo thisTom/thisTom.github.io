@@ -49,6 +49,9 @@ body.open{
 	height: auto;
 	overflow: auto;
 }
+.container{
+	padding: 10px;
+}
 b{
 	color: #aaf;
 }
@@ -122,7 +125,8 @@ nav ul a:hover span{
 	display: inline-block;
 }
 body > section{
-	width: 100%;
+	width: 1px;
+    min-width: 100%;/*for ios bug*/
 	height: 690px;
 
 }
