@@ -157,12 +157,11 @@ section .content{
 }
 /* page cover */
 #cover{
+	height: 100%;
 	position: absolute;
     top: 0;
     z-index: 100;
     background: url(../images/coverBg.jpg);
-    height: 1px;
-    min-height: 100%;
     padding: 0px;
     overflow: hidden;
 }
