@@ -60,12 +60,21 @@ window.onload=function () {
 	          script = script.onerror = script.onload = script.onreadystatechange = null;
 	          var data = window.SWther || {};
 	          //console.log(data)
-	          var weatherData={
-	            time : data.add.update.slice(-7),
-	            city : Object.getOwnPropertyNames(data.w)[1],
-	            weather : data.w[Object.getOwnPropertyNames(data.w)[1]][0]
+	          if (isIE) {
+		          var weatherData={
+		           	time : data.add.update.slice(-7),
+		           	city : Object.getOwnPropertyNames(data.w)[0],
+		           	weather : data.w[Object.getOwnPropertyNames(data.w)[0]][0]
+		          };
+	          }else{
+		          var weatherData={
+		            time : data.add.update.slice(-7),
+		            city : Object.getOwnPropertyNames(data.w)[1],
+		            weather : data.w[Object.getOwnPropertyNames(data.w)[1]][0]
+		          };
 	          };
-	          //console.log(data.w)
+
+	          console.log(data.w)
 	          console.log(weatherData);
 	          //console.log(weatherBox.childNodes)
 	          addClass(weatherBox,'weatherActive');
