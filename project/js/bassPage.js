@@ -21,6 +21,7 @@ window.onload=function () {
 	//ie8及以下版本方案
 	var DEFAULT_VERSION = "8.0";
 	var ua = navigator.userAgent.toLowerCase();
+	//console.log(ua);
 	var isIE = ua.indexOf("msie")>-1;
 	var safariVersion;
 	if(isIE){
@@ -60,7 +61,7 @@ window.onload=function () {
 	          script = script.onerror = script.onload = script.onreadystatechange = null;
 	          var data = window.SWther || {};
 	          //console.log(data)
-	          if (isIE) {
+	          if (ua.indexOf("msie")>-1 || ua.indexOf("rv:11") > -1 || ua.indexOf("edge") >-1) {
 		          var weatherData={
 		           	time : data.add.update.slice(-7),
 		           	city : Object.getOwnPropertyNames(data.w)[0],
@@ -74,8 +75,8 @@ window.onload=function () {
 		          };
 	          };
 
-	          console.log(data.w)
-	          console.log(weatherData);
+	          //console.log(data.w)
+	          //console.log(weatherData);
 	          //console.log(weatherBox.childNodes)
 	          addClass(weatherBox,'weatherActive');
 	          var weatherCh=weatherBox.childNodes;
@@ -87,9 +88,11 @@ window.onload=function () {
 	          weatherCh[7].innerHTML=weatherData.weather.p1+'级';
 	          var imgName;
 	          switch (weatherData.weather.s1){
+	          	case '阴':
+	          		imgName='yin';
+	          		break;
 	          	case '晴':
-	          		imgName='qing';
-	          		
+	          		imgName='qing';	          		
 	          		break;
 	          	case '多云':
 	          		imgName='duoyun';
@@ -197,7 +200,7 @@ window.onload=function () {
 			showContent.style.zIndex=(Zindex++);
 			var nowClass=self.getAttribute('class');
 			var _index=classes.indexOf(nowClass);
-			console.log(_index);
+			//console.log(_index);
 			workingProject[_index].style.display='block';
 			workingProject[_index].setAttribute('name',_index);
 			//弹回窗口
