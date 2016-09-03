@@ -66,6 +66,9 @@ li{
 		border: none;	
 		display: block !important;	
 	}
+	#showContent3{
+		overflow-y: scroll !important;
+	}
 }
 
 article,
@@ -598,5 +601,7 @@ iframe{
 .sidebar{
 	background: url(../media/sideba.png) center center;
 }
-
+.hexagon{
+	background: url(../media/hexagon.png) center center;
+}
 

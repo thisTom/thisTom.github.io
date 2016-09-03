@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			@media only screen and (max-width: 769px) {
+				body{
+					font-size: 10px;
+				}
+			}
+			ul{
+				list-style: none;
+			}
+			body{
+				font-family: "微软雅黑";
+				color: gray;
+				font-size: 16px;
+			}
+			.container{
+				box-sizing: border-box;
+				width: 90%;
+				margin: 50px auto 0;
+			}
+
+			
+			.content{
+				width: 95%;
+				margin-left: 5%;
+			}
+			.column{
+				float: left;
+				width: 20%;
+				margin-left: -3.5%;
+			}
+			.outer,.middle,.inner,.description{
+				width: 100%;
+				overflow: hidden;
+				
+				
+			}
+			.outer{
+				transition: all 1s cubic-bezier(.25,.1,.3,2.5);
+				-webkit-transition: all 1s cubic-bezier(.25,.1,.3,2.5);				
+				margin-top: 10%;
+			}
+			.outer:nth-child(2n+1){
+				transform: rotate(90deg);
+				-webkit-transform: rotate(90deg);
+			}
+			.outer:nth-child(2n){
+				transform: rotate(-90deg);
+				-webkit-transform: rotate(-90deg);
+			}
+			.middle{	
+				position: relative;
+				transform: rotate(-60deg);
+				-webkit-transform: rotate(-60deg);						
+			}
+			.inner{
+				position: relative;
+				transform: rotate(-60deg);
+				-webkit-transform: rotate(-60deg);
+				visibility: visible;
+				background-size: cover;
+				background-position: left top;
+				
+			}
+			.description{
+				padding-bottom: 20px;
+				cursor: pointer;
+				color: white;
+				bottom: 0;
+				position: absolute;
+				background: rgba(0,0,0,.5);
+				animation-timing-function:ease-in-out;
+				-webkit-animation-timing-function:ease-in-out;
+			}
+			
+			@keyframes bottomWave{
+				30%{
+					padding-bottom: 90px;
+				}
+				60%{
+					padding-bottom: 0px;
+				}
+
+
+			}
+
+			.inner:hover .description{	
+				animation: bottomWave 1s;			
+			}
+			.description p{
+				padding: 0 25%;
+				text-align: center;
+			}
+			.des_first{
+				font-size: 1.75em;
+			}
+			.des_second{
+				font-size: 0.875em;
+			}
+			.description .line{
+				border: solid 1px #FFFFFF;
+				height: 0px;
+				width: 30%;
+				margin: 10px auto;
+			}
+			.pos1{
+				margin-top: 9%;
+			}
+			.pos2{
+				margin-top: 0px;
+			}
+			.pos3{
+				margin-top: 18%;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="content">
+				<ul class="column pos1">
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/shousi.jpg);" />
+									<div class="description" style="background: rgba(127,255,212,.7);">
+										<p class="des_first">浅回寿司</p>
+										<span class="line"></span>
+										<p class="des_second">寿司品种多样，菜品丰富</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+				</ul>
+				<ul class="column pos2">
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/shuwu.jpg);" />
+									<div class="description">
+										<p class="des_first">三味书屋</p>
+										<span class="line"></span>
+										<p class="des_second">您的阅读天堂</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/dangao.jpg);" />
+									<div class="description" style="background: rgba(255,193,193,.7);">
+										<p class="des_first">飘雪蛋糕</p>
+										<span class="line"></span>
+										<p class="des_second">鲜奶水果蛋糕，现做</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/shousi.jpg);" />
+									<div class="description" style="background: rgba(127,255,212,.7);">
+										<p class="des_first">浅回寿司</p>
+										<span class="line"></span>
+										<p class="des_second">寿司品种多样，菜品丰富</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+				</ul>
+				<ul class="column pos1">
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/shousi.jpg);" />
+									<div class="description">
+										<p class="des_first">浅回寿司</p>
+										<span class="line"></span>
+										<p class="des_second">寿司品种多样，菜品丰富</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/shuwu.jpg);" />
+									<div class="description" style="background: rgba(127,255,212,.7);">
+										<p class="des_first">浅回寿司</p>
+										<span class="line"></span>
+										<p class="des_second">寿司品种多样，菜品丰富</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+				</ul>
+				<ul class="column pos3">
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/dangao.jpg);" />
+									<div class="description" style="background: rgba(255,193,193,.7);">
+										<p class="des_first">飘雪蛋糕</p>
+										<span class="line"></span>
+										<p class="des_second">鲜奶水果蛋糕，现做</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+				</ul>
+				<ul class="column pos1">
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/shuwu.jpg);" />
+									<div class="description">
+										<p class="des_first">浅回寿司</p>
+										<span class="line"></span>
+										<p class="des_second">寿司品种多样，菜品丰富</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/shousi.jpg);" />
+									<div class="description" style="background: rgba(127,255,212,.7);">
+										<p class="des_first">浅回寿司</p>
+										<span class="line"></span>
+										<p class="des_second">寿司品种多样，菜品丰富</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+				</ul>
+				<ul class="column pos2">
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/shuwu.jpg);" />
+									<div class="description">
+										<p class="des_first">浅回寿司</p>
+										<span class="line"></span>
+										<p class="des_second">寿司品种多样，菜品丰富</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+					<li>
+						<div class="outer">
+							<div class="middle">
+								<div class="inner" style="background: url(img/dangao.jpg);" />
+									<div class="description" style="background: rgba(255,193,193,.7);">
+										<p class="des_first">飘雪蛋糕</p>
+										<span class="line"></span>
+										<p class="des_second">鲜奶水果蛋糕，现做</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				//alert(1);
+				//初始化
+				$('.outer').css({'transform': 'rotate(120deg)',
+								'-webkit-transform': 'rotate(120deg)'
+				})
+				//响应式改变column大小
+				function getColumnWidth () {
+					var innerObj=$('.inner');
+					var innerObjHeight=innerObj.width()*0.82;
+					//console.log(innerObjHeight);
+					innerObj.css('height',innerObjHeight);					
+				};
+				getColumnWidth();
+				$(window).on('resize',getColumnWidth);
+				
+				setTimeout(function chushihua () {
+					//alert(1);
+					
+					
+				},2000)
+
+
+				
+			})
+		</script>
+	</body>
+</html>
