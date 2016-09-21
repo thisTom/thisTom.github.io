@@ -397,9 +397,9 @@ window.onload=function () {
 	function changeHeight () {
 		var menuRightLi=rightMenu.querySelectorAll('li');
 		each(menuRightLi,function changeHeight (self) {
-			var selfH=self.offsetWidth;
-			//console.log(selfH);
-			self.style.height=(selfH+'px');			
+			var selfH=self.style.width;
+			console.log(selfH);
+			self.style.height=selfH;			
 		});
 	};
 	changeHeight();
