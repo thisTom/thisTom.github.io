@@ -125,22 +125,23 @@ a {
 	line-height: .3rem;
 }
 .level{
-	width: .72rem;
+	padding:0 0.1rem;
 	background: url(../images/level.png) no-repeat center;
-	text-indent: .3rem;
+	background-size: 100%;
+	text-indent: .28rem;
 }
 .tag2{
 	text-align: center;
 	background-color: #ffd9ad;
 	border-radius: .15rem;
-	padding: 0 .1rem;
+	padding: 0 0.1rem;
 }
 .tag3{
 	color: #7ec9fd;
 	text-align: center;
-	border: 2px solid #7ec9fd;
+	border: 3px solid #7ec9fd;
 	border-radius: .15rem;
-	padding: 0 .2rem;
+	padding: 0 0.2rem;
 	line-height: .26rem !important;
 }
 .news-title{
