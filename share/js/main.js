@@ -6,20 +6,18 @@ window.onload=function () {
 		//video control
 		var videoObj=document.querySelector('.news-videos video');
 		var pauseObj=document.querySelector('.pause');
-		var played=false;
-		function playControl () {
-			if (!played) {
-				pauseObj.style.display='none';
-				videoObj.play();
-				played=true;
-			}else{
-				pauseObj.style.display='block';
-				videoObj.pause();	
-				played=false;
-			}
+
+		function playControl (e) {
+			videoObj.addEventListener(e,function () {
+				if (e=='pause') {
+					pauseObj.style.display='block';
+				}else{
+					pauseObj.style.display='none';
+				}
+			})
 		};
-		pauseObj.addEventListener('touchstart',playControl,false);
-		videoObj.addEventListener('touchstart',playControl,false);
+		playControl('pause');
+		playControl('play');
 	}
 }
 
