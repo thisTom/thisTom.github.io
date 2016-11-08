@@ -18,6 +18,9 @@ window.onload=function () {
 		};
 		playControl('pause');
 		playControl('play');
+		pauseObj.onclick=function () {
+			videoObj.play();
+		}
 	}
 }
 
