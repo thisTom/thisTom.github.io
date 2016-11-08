@@ -6,11 +6,6 @@ window.onload=function () {
 		//video control
 		var videoObj=document.querySelector('.news-videos video');
 		var pauseObj=document.querySelector('.pause');
-		videoObj.addEventListener('touchstart',function () {
-			if (videoObj.played) {
-				videoObj.pause();
-			}
-		});
 		function playControl (e) {
 			videoObj.addEventListener(e,function () {
 				if (e=='pause') {
@@ -22,7 +17,7 @@ window.onload=function () {
 		};
 		playControl('pause');
 		playControl('play');
-		pauseObj.onclick=function () {
+		pauseObj.ontouchstart=function () {
 			videoObj.play();
 		}
 	}
