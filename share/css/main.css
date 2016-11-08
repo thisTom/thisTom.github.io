@@ -92,7 +92,9 @@ a {
 .down-link{
 	padding-left: .1rem;
 }
-
+.down-link-img{
+	display: none;
+}
 .content{
 	width: 100%;
 	height: auto;

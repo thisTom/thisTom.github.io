@@ -3,13 +3,16 @@ window.onload=function () {
 	function testApp(url) {  
 	    var timeout, t = 1000, hasApp = true;
 	    var downLink=document.querySelector('.down-link'),
-	    	openLink=document.querySelector('.bottom-btn');
+	    	openLink=document.querySelector('.bottom-btn'),
+	    	downLinkImg=document.querySelector('.down-link-img');
 	    setTimeout(function () {  
 	        if (hasApp) {  
+	        	downLinkImg.style.display='none';
 	            downLink.innerText='立即打开';
 	            downLink.setAttribute('href',url);
 	            openLink.setAttribute('href',url);				
 	        } else {  
+	        	downLinkImg.style.display='inline-block';
 	            downLink.innerText='立即下载';
 	            downLink.setAttribute('href','http://m.zoneju.com/app');
 	            openLink.setAttribute('href','http://m.zoneju.com/app'); 
